@@ -20,6 +20,7 @@
     set wildmenu                                               " Allows auto-completion in :mode
     set wildmode=longest:full,full                             " On tab wildmenu shows up
     set t_Co=256                                               " Set color limit to 256
+" ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
 " Vundle 
@@ -28,8 +29,8 @@
     filetype off
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    " --------------------------------------------------------------------- "
     
+    " --------------------------------------------------------------------- "
     " Packages
     Bundle 'gmarik/vundle'
     Bundle 'scrooloose/nerdtree'
@@ -75,6 +76,12 @@
     let g:syntastic_warning_symbol = '⚠'
 " ------------------------------------------------------------------------- "
 
+" ------------------------------------------------------------------------- "
+" Powerline
+    " Setup
+    set laststatus=2   " Always show the statusline
+    set encoding=utf-8 " Necessary to show Unicode glyphs
+" ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
 " Mappings 
@@ -87,7 +94,7 @@
     map <C-n> <ESC>:NERDTreeToggle<CR>
     " Ctrl + t = Toggle TagBar
     map <C-t> <ESC>:TagbarToggle<CR>
-    " Ctrl + [h, j, k, l] = Move to split ←  ↓ ↑ → 
+    " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ → 
         noremap <C-H> <C-W>h
         noremap <C-J> <C-W>j
         noremap <C-K> <C-W>k
