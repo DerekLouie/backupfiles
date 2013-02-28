@@ -46,7 +46,7 @@
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'mileszs/ack.vim'
     Bundle 'scrooloose/syntastic'
-    "Bundle 'Raimondi/delimitMate'
+"    Bundle 'Raimondi/delimitMate'
     " --------------------------------------------------------------------- "
     
     filetype plugin indent on     " required! for vundle
@@ -65,13 +65,18 @@
 " Tagbar
     " Setup
     let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
+    " Settings
     let g:tagbar_width=26                          " Default is 40, seems too wide
+    "map <F7> :!ctags -R .<CR>
+    " Usage
+    " In root directory type: 'ctags -R ' and that will make tag files for the whole directory
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
 " Syntastic
     " Setup
     let g:syntastic_enable_signs = 1
+    " Settings
     let g:syntastic_error_symbol = '✗'
     let g:syntastic_warning_symbol = '⚠'
 " ------------------------------------------------------------------------- "
@@ -81,6 +86,12 @@
     " Setup
     set laststatus=2   " Always show the statusline
     set encoding=utf-8 " Necessary to show Unicode glyphs
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Nerd_Commenter 
+    " Setup
+    let NERDSpaceDelims=1
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -99,5 +110,6 @@
         noremap <C-J> <C-W>j
         noremap <C-K> <C-W>k
         noremap <C-L> <C-W>l
-
-
+    let mapleader = "\<Space>"
+    map <leader><Space> <plug>NERDCommenterToggle
+" ------------------------------------------------------------------------- "
