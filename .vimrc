@@ -1,4 +1,3 @@
-
 " ------------------------------------------------------------------------- "
 " Vundle 
     " Setup
@@ -6,7 +5,8 @@
     filetype off
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
-    
+    " Ask Vundle to use git instead of https links when pulling
+    let g:vundle_default_git_proto = 'git'
     " --------------------------------------------------------------------- "
     " Packages
     Bundle 'gmarik/vundle'
