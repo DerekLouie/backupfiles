@@ -1,38 +1,5 @@
 
 " ------------------------------------------------------------------------- "
-" Vim 
-    " Setup
-    syntax on                                               " Syntax Highlighting
-        au! BufRead,BufNewFile *.py set filetype=python
-        au! BufRead,BufNewFile *.python set filetype=python
-    set backspace=2                                         " Make sure backspace works
-    set mouse=a                                             " Use mouse and scrolling
-    set nowrap                                              " No line wrapping
-    set number                                              " Show line numbers
-    set hlsearch                                            " Set highlighting when searching
-    " Indentation
-        set tabstop=4
-        set shiftwidth=4
-        set smarttab
-        set expandtab
-        set smartindent
-        set softtabstop=4
-        set autoindent
-    set clipboard=unnamed                                   " Use os level copy-paste buffer
-    set wildmenu                                            " Allows auto-completion in :mode
-    set wildmode=longest:full,full                          " On tab wildmenu shows up
-    set t_Co=256                                            " Set color limit to 256
-    color jellybeans
-    set ignorecase
-    " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
-    set wrap
-    set linebreak
-    " OS LEVEL HACKS
-    " LEFT COMMAND MAPPED TO CTRL
-    " CAPSLOCK MAPPED TO EXC
-" ------------------------------------------------------------------------- "
-
-" ------------------------------------------------------------------------- "
 " Vundle 
     " Setup
     set nocompatible
@@ -72,6 +39,40 @@
         "
         " see :h vundle for more details or wiki for FAQ
         " NOTE: comments after Bundle command are not allowed..
+" ------------------------------------------------------------------------- "
+
+
+" ------------------------------------------------------------------------- "
+" Vim 
+    " Setup
+    syntax on                                               " Syntax Highlighting
+        au! BufRead,BufNewFile *.py set filetype=python
+        au! BufRead,BufNewFile *.python set filetype=python
+    set backspace=2                                         " Make sure backspace works
+    set mouse=a                                             " Use mouse and scrolling
+    set nowrap                                              " No line wrapping
+    set number                                              " Show line numbers
+    set hlsearch                                            " Set highlighting when searching
+    " Indentation
+        set tabstop=4
+        set shiftwidth=4
+        set smarttab
+        set expandtab
+        set smartindent
+        set softtabstop=4
+        set autoindent
+    set clipboard=unnamed                                   " Use os level copy-paste buffer
+    set wildmenu                                            " Allows auto-completion in :mode
+    set wildmode=longest:full,full                          " On tab wildmenu shows up
+    set t_Co=256                                            " Set color limit to 256
+    color jellybeans
+    set ignorecase
+    " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
+    set wrap
+    set linebreak
+    " OS LEVEL HACKS
+    " LEFT COMMAND MAPPED TO CTRL
+    " CAPSLOCK MAPPED TO EXC
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
