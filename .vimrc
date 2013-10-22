@@ -19,6 +19,7 @@
     Bundle 'ervandew/supertab'
     Bundle 'tpope/vim-surround'
     Bundle 'vim-scripts/SearchComplete'
+    Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'Lokaltog/vim-powerline'
     Bundle 'mileszs/ack.vim'
@@ -110,6 +111,14 @@
 
 " ------------------------------------------------------------------------- "
 " Mappings 
+    " FOR DOCS
+    " :help key-notation
+    " :map
+    " :imap
+    " :nmap
+    " :verbose map
+    " :help map-verbose
+    " :Listmaps
     " Ctrl + s = Save
     map <C-s> :w<CR>
     imap <C-s> <Esc>:w<CR>i
@@ -130,4 +139,7 @@
     map <leader>h :set hlsearch!<CR>
     map <leader>d daw
     map <leader>dd diwi<Space><Esc>
+    " Tab Navigation
+        " switch between tabs = gt,gT
+    map <C-t> <Esc>:tabnew<CR>
 " ------------------------------------------------------------------------- "
