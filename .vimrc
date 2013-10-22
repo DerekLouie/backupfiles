@@ -14,7 +14,7 @@
     Bundle 'majutsushi/tagbar'
     Bundle 'kien/ctrlp.vim'
     Bundle 'docunext/closetag.vim'
-    Bundle 'kevinw/pyflakes-vim'
+   Bundle 'kevinw/pyflakes-vim'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'ervandew/supertab'
     Bundle 'tpope/vim-surround'
@@ -27,6 +27,7 @@
     Bundle 'nanotech/jellybeans.vim' 
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'gregsexton/MatchTag'
+    Bundle 'Lokaltog/vim-easymotion'
 "    Bundle 'Raimondi/delimitMate'
     " --------------------------------------------------------------------- "
     
@@ -97,6 +98,14 @@
     " OS LEVEL HACKS
     " LEFT COMMAND MAPPED TO CTRL
     " CAPSLOCK MAPPED TO EXC
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" EasyMotion
+
+ let g:EasyMotion_leader_key = "'"
+
+
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -267,4 +276,6 @@
     map <leader>q :e ~/buffer<cr>
     " Toggle paste mode on and off
     map <leader>pp :setlocal paste!<cr>
+    " Browse Old files
+    map <leader>oo :bro ol<cr>
 "------------------------------------------------------------------------- "
