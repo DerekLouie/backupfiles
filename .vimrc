@@ -1,4 +1,4 @@
-" ------------------------------------------------------------------------- "
+"------------------------------------------------------------------------- "
 " Vundle 
     " Setup
     set nocompatible
@@ -14,11 +14,12 @@
     Bundle 'majutsushi/tagbar'
     Bundle 'kien/ctrlp.vim'
     Bundle 'docunext/closetag.vim'
-   Bundle 'kevinw/pyflakes-vim'
+    Bundle 'kevinw/pyflakes-vim'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'ervandew/supertab'
+    Bundle 'vim-scripts/CmdlineComplete'
     Bundle 'tpope/vim-surround'
-    Bundle 'vim-scripts/SearchComplete'
+    " Bundle 'vim-scripts/SearchComplete'
     Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
     Bundle 'Lokaltog/vim-powerline'
@@ -28,6 +29,8 @@
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'gregsexton/MatchTag'
     Bundle 'Lokaltog/vim-easymotion'
+    Bundle 'mileszs/ack.vim'
+    Bundle 'vim-scripts/vimgrep.vim'
 "    Bundle 'Raimondi/delimitMate'
     " --------------------------------------------------------------------- "
     
@@ -102,9 +105,8 @@
 
 " ------------------------------------------------------------------------- "
 " EasyMotion
-
+ ":help easymotion
  let g:EasyMotion_leader_key = "'"
-
 
 " ------------------------------------------------------------------------- "
 
@@ -151,10 +153,11 @@
 " :verbose map
 " :help map-verbose
 " :Listmaps
+" :verbose map! <C-Q>
     let mapleader = "\<Space>"
     " Ctrl + s = Save
-    map <C-s> :w<CR>
-    imap <C-s> <Esc>:w<CR>i
+    " map <C-s> :w<CR>
+    " imap <C-s> <Esc>:w<CR>i
     " Ctrl + Y = Redo " 
     map <C-y> <C-R> "Ctrl + Y = redo
     " Ctrl + n = Toggle NERDTree"
@@ -171,22 +174,6 @@
     map <leader>h :set hlsearch!<CR>
     map <leader>d daw
     map <leader>dd diwi<Space><Esc>
-    " Tab Navigation
-        " switch between tabs = gt,gT
-        " gt (or :tabn) to go to next tab
-        " gT (or :tabp or :tabN) to go to previous tab
-        " #gt (or :tabn #) to go to #th tab
-        " :tabr to go to first tab
-        " :tabl to go to last tab
-        " :tabm to move the current tab to the last position
-        " :tabm # to move the current tab to the #th position
-    map <C-t> <Esc>:tabnew<CR>
-    map <leader>to :tabonly<cr>
-    map <leader>tc :tabclose<cr>
-    map <leader>tm :tabmove
-    " Opens a new tab with the current buffer's path
-    " Super useful when editing files in the same directory
-    map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
     " Fast source vimrc 
     map <leader>s <Esc>:source $MYVIMRC<CR>
     " Fast saving
@@ -196,7 +183,9 @@
     " Ignore case when searching
     set ignorecase
     " When searching try to be smart about cases 
-    set smartcase
+    " set smartcase
+    " Toggle case search, as smart/ignore conflict  BROKEN
+    " command Case set smartcase!|set ignorecase!
     " Highlight search results
     set hlsearch
     " Makes search act like search in modern browsers
@@ -210,6 +199,8 @@
     set tm=500
     " Use Unix as the standard file type
     set ffs=unix,dos,mac
+    " Closed buffers not listed
+    set hid 
     " Visual mode pressing * or # searches for the current selection
     " Search for selected text, forwards or backwards.
     vnoremap <silent> * :<C-U>
@@ -229,11 +220,11 @@
     nmap <S-k> mz:m-2<cr>`z
     vmap <S-j> :m'>+<cr>`<my`>mzgv`yo`z
     vmap <S-k> :m'<-2<cr>`>my`<mzgv`yo`z
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => vimgrep searching and cope displaying
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+    "" => vimgrep searching and cope displaying
+    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "" When you press gv you vimgrep after the selected text
-    "" vnoremap <silent> gv :call VisualSelection('gv')<CR>
+    "vnoremap <silent> gv :call VisualSelection('gv')<CR>
     "
     "" Open vimgrep and put the cursor in the right position
     "map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
@@ -271,11 +262,49 @@
     "map <leader>sa zg
     "map <leader>s? z=
     " Remove the Windows ^M - when the encodings gets messed up
-    noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-    " Quickly open a buffer for scripbble
-    map <leader>q :e ~/buffer<cr>
-    " Toggle paste mode on and off
+    noremap <Leader>mm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+        " Toggle paste mode on and off
     map <leader>pp :setlocal paste!<cr>
     " Browse Old files
     map <leader>oo :bro ol<cr>
+    " Buffer Navigation
+    " Quickly open a buffer
+    map <leader>ls <esc>:ls<CR>:b<Space>
+    map Q <esc>:bd<cr>
+    map Q! <esc>:bd!<cr>
+    map <S-o> :e 
+    map <S-Right> <esc>:bnext<cr> 
+    map <S-Left> <esc>:bprevious<cr> 
+    " Tab Navigation
+        " switch between tabs = gt,gT
+        " gt (or :tabn) to go to next tab
+        " gT (or :tabp or :tabN) to go to previous tab
+        " #gt (or :tabn #) to go to #th tab
+        " :tabr to go to first tab
+        " :tabl to go to last tab
+        " :tabm to move the current tab to the last position
+        " :tabm # to move the current tab to the #th position
+    "Old working mappings
+    " map <C-o> <Esc>:tab sbnext<CR>
+    " map <C-t> <Esc>:tabnew<CR>
+    " map <leader>to :tabonly<cr>
+    " Opens a new tab with the current buffer's path
+    " Super useful when editing files in the same directory
+    " map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+    nmap <C-o> <Esc>:tab sbnext<CR>
+    nmap <C-t> <Esc>:tabnew<CR>
+    nmap <leader>q <esc>:tabclose<cr>
+    "leader go:
+    nmap <leader>g <esc>:tabm 
+    nmap <Tab> <esc>:tabn<cr> 
+    nmap <S-Tab> <esc>:tabp<cr> 
 "------------------------------------------------------------------------- "
+" TO print out what a setting is type ":set *SETTINGNAME*?
+"
+"
+" CmdlineComplete
+" When editing the command-line (: / etc.), press Ctrl-P or Ctrl-N to complete
+" the word before the cursor, using keywords in the current file. E.g: you
+" want to search for 'elephant' in the buffer, just type /ele and press
+" Ctrl-P. So long as 'elephant' is in the buffer, you will get 'ele' completed
+" into 'elephant'.
