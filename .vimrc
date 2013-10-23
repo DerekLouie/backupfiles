@@ -78,11 +78,11 @@
     set wrap
     set linebreak
     " Specify the behavior when switching between buffers 
-    " try
-          " set switchbuf=useopen,usetab,newtab
-            " set stal=2
-        " catch
-    " endtry
+    try
+          set switchbuf=useopen,usetab,newtab
+            set stal=2
+        catch
+    endtry
     " Return to last edit position when opening files (You want this!)
     autocmd BufReadPost *
          \ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -155,10 +155,6 @@
 " :Listmaps
 " :verbose map! <C-Q>
     let mapleader = "\<Space>"
-    " Ctrl + s = Save
-    " map <C-s> :w<CR>
-    " imap <C-s> <Esc>:w<CR>i
-    " Ctrl + Y = Redo " 
     map <C-y> <C-R> "Ctrl + Y = redo
     " Ctrl + n = Toggle NERDTree"
     map <C-n> <ESC>:NERDTreeToggle<CR>
@@ -221,36 +217,6 @@
     vmap <S-j> :m'>+<cr>`<my`>mzgv`yo`z
     vmap <S-k> :m'<-2<cr>`>my`<mzgv`yo`z
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "" => vimgrep searching and cope displaying
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    "" When you press gv you vimgrep after the selected text
-    "vnoremap <silent> gv :call VisualSelection('gv')<CR>
-    "
-    "" Open vimgrep and put the cursor in the right position
-    "map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-    "
-    "" Vimgreps in the current file
-    "map <leader>gg :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-    "
-    "" When you press <leader>r you can search and replace the selected text
-    "vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-    "
-    "" Do :help cope if you are unsure what cope is. It's super useful!
-    ""
-    "" When you search with vimgrep, display your results in cope by doing:
-    ""   <leader>cc
-    ""
-    "" To go to the next search result do:
-    ""   <leader>n
-    ""
-    "" To go to the previous search results do:
-    ""   <leader>p
-    ""
-    "map <leader>cc :botright cope<cr>
-    "map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-    "map <leader>n :cn<cr>
-    "map <leader>p :cp<cr>
-    """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "" => Spell checking
     """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     "" Pressing ,ss will toggle and untoggle spell checking
@@ -263,7 +229,7 @@
     "map <leader>s? z=
     " Remove the Windows ^M - when the encodings gets messed up
     noremap <Leader>mm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-        " Toggle paste mode on and off
+    " Toggle paste mode on and off
     map <leader>pp :setlocal paste!<cr>
     " Browse Old files
     map <leader>oo :bro ol<cr>
@@ -294,8 +260,7 @@
     nmap <C-o> <Esc>:tab sbnext<CR>
     nmap <C-t> <Esc>:tabnew<CR>
     nmap <leader>q <esc>:tabclose<cr>
-    "leader go:
-    nmap <leader>g <esc>:tabm 
+    nmap <leader>m <esc>:tabm 
     nmap <Tab> <esc>:tabn<cr> 
     nmap <S-Tab> <esc>:tabp<cr> 
 "------------------------------------------------------------------------- "
