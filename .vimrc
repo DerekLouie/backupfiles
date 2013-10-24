@@ -19,7 +19,6 @@
     Bundle 'ervandew/supertab'
     Bundle 'vim-scripts/CmdlineComplete'
     Bundle 'tpope/vim-surround'
-    " Bundle 'vim-scripts/SearchComplete'
     Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
     " Bundle 'Lokaltog/vim-powerline'  
@@ -32,7 +31,6 @@
     Bundle 'gregsexton/MatchTag'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'mileszs/ack.vim'
-    Bundle 'vim-scripts/vimgrep.vim'
 "    Bundle 'Raimondi/delimitMate'
     " --------------------------------------------------------------------- "
     
@@ -288,6 +286,8 @@
     " Switch CWD to the directory of the open buffer
     map <leader>cd :cd %:p:h<cr>:pwd<cr>
     map <leader>ls <esc>:ls<CR>:b<Space>
+    map <leader>ts <esc>:ls<cr>:tabnew<space>b
+    " map Q <esc>:q<cr>
     map Q <esc>:bd<cr>
     map Q! <esc>:bd!<cr>
     "Remember you can use this notation with buffers :1,3bd
