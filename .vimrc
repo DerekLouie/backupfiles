@@ -14,7 +14,7 @@
     Bundle 'majutsushi/tagbar'
     Bundle 'kien/ctrlp.vim'
     Bundle 'docunext/closetag.vim'
-    Bundle 'kevinw/pyflakes-vim'
+"    Bundle 'kevinw/pyflakes-vim'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'ervandew/supertab'
     Bundle 'vim-scripts/CmdlineComplete'
@@ -22,7 +22,9 @@
     " Bundle 'vim-scripts/SearchComplete'
     Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
-    Bundle 'Lokaltog/vim-powerline'
+    " Bundle 'Lokaltog/vim-powerline'  
+    Bundle 'bling/vim-airline'
+    Bundle 'Lokaltog/powerline-fonts'
     Bundle 'mileszs/ack.vim'
     Bundle 'scrooloose/syntastic'
     Bundle 'nanotech/jellybeans.vim' 
@@ -104,6 +106,50 @@
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
+" ctrlp
+" :help ctrlp-options
+" :help ctrlp-mappings
+"Use this option to change the mapping to invoke CtrlP in Normal mode: 
+  " let g:ctrlp_map = '<c-p>'
+" Set the default opening command to use when pressing the above mapping: >
+  " let g:ctrlp_cmd = 'CtrlPMixed'  
+" Use this to disable the plugin completely: 
+  " let g:loaded_ctrlp = 1
+  let g:ctrlp_tabpage_position = 'l'
+" When this is set to 1, the <c-o> and <c-y> mappings will accept one extra key
+" as an argument to override their default behavior: 
+  let g:ctrlp_arg_map = 1
+
+" Pressing <c-o> or <c-y> will then prompt for a keypress. The key can be:
+   " - Open files marked by <c-z>.
+   " - When no file has been marked by <c-z>, open a console dialog with the
+      " following options:
+
+      " Open the selected file:
+        " t - in a tab page.
+        " v - in a vertical split.
+        " h - in a horizontal split.
+        " r - in the current window.
+        " i - as a hidden buffer.
+        " x - (optional) with the function defined in |g:ctrlp_open_func|.
+        " <esc>, <c-c>, <c-u> - cancel and go back to the prompt.
+        " <cr> - use the default behavior specified with g:ctrlp_open_new_file and g:ctrlp_open_multiple_files.
+
+      " Other options (not shown):
+        " a - mark all files in the match window.
+        " d - change CtrlP's local working directory to the selected file's
+            " directory and switch to find file mode.
+  " <F7>
+    " - Wipe the MRU list.
+    " - Delete MRU entries marked by <c-z>.
+" Once CtrlP is open:
+" Press <c-f> and <c-b> to cycle between modes.
+" Use <c-n>, <c-p> to select the next/previous string in the prompt's history.
+" Use <c-z> to mark/unmark multiple files and <c-o> to open them.
+
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
 " EasyMotion
  ":help easymotion
  let g:EasyMotion_leader_key = "'"
@@ -131,10 +177,13 @@
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
-" Powerline
+" Airline
     " Setup
     set laststatus=2   " Always show the statusline
     set encoding=utf-8 " Necessary to show Unicode glyphs
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    set guifont=Anonymice\ Powerline
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -232,12 +281,17 @@
     " Toggle paste mode on and off
     map <leader>pp :setlocal paste!<cr>
     " Browse Old files
-    map <leader>oo :bro ol<cr>
+    map <leader>op :bro ol<cr>
+    map <leader>oo :CtrlPMRU<cr>
     " Buffer Navigation
-    " Quickly open a buffer
+        " Quickly open a buffer
+    " Switch CWD to the directory of the open buffer
+    map <leader>cd :cd %:p:h<cr>:pwd<cr>
     map <leader>ls <esc>:ls<CR>:b<Space>
     map Q <esc>:bd<cr>
     map Q! <esc>:bd!<cr>
+    "Remember you can use this notation with buffers :1,3bd
+    map <leader>db <esc>:ls<CR>:bd<left><left>
     map <S-o> :e 
     map <S-Right> <esc>:bnext<cr> 
     map <S-Left> <esc>:bprevious<cr> 
@@ -256,10 +310,11 @@
     " map <leader>to :tabonly<cr>
     " Opens a new tab with the current buffer's path
     " Super useful when editing files in the same directory
-    " map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+    map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
     nmap <C-o> <Esc>:tab sbnext<CR>
     nmap <C-t> <Esc>:tabnew<CR>
     nmap <leader>q <esc>:tabclose<cr>
+    "leader go:
     nmap <leader>m <esc>:tabm 
     nmap <Tab> <esc>:tabn<cr> 
     nmap <S-Tab> <esc>:tabp<cr> 
@@ -273,3 +328,4 @@
 " want to search for 'elephant' in the buffer, just type /ele and press
 " Ctrl-P. So long as 'elephant' is in the buffer, you will get 'ele' completed
 " into 'elephant'.
+
