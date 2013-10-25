@@ -247,11 +247,12 @@ let g:gitgutter_realtime = 0
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
+    " :help map-verbose
+    " :help daw
     " :map
     " :imap
     " :nmap
     " :verbose map
-    " :help map-verbose
     " :Listmaps
     " :verbose map! <C-Q>
 

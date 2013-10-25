@@ -1,0 +1,8 @@
+[user]
+	name = Derek Louie
+[http]
+	sslVerify = true
+[color]
+	ui = true
+[push]
+	default = current
