@@ -422,6 +422,12 @@ let g:gitgutter_realtime = 0
 
     " Focus on the previous tab
     nmap <S-Tab> <esc>:tabp<cr>
+
+    " Clear all trailing spaces
+    nmap \\ <esc>:%s/\s\+$//e<CR>
+
+    " Make entire file of single lines a comma separated list
+    nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
