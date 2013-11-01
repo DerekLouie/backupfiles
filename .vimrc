@@ -171,9 +171,12 @@
     " :help easymotion
     let g:EasyMotion_leader_key = "\\"
     " let g:EasyMotion_leader_key = "'"
-    "
+    
     " Activate Easymotion
-    nmap ' \w
+    " nmap ' \w
+    nnoremap ' \g
+    nnoremap " \gE
+
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -203,38 +206,38 @@ let g:gitgutter_realtime = 0
 
     " To Turn on patched font support
     " let g:Powerline_symbols = 'fancy'
-    " let g:airline_powerline_fonts = 1
+    let g:airline_powerline_fonts = 1
 
     " Use unicode symbols instead
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
+    " if !exists('g:airline_symbols')
+        " let g:airline_symbols = {}
+    " endif
 
-    " Symbol Mappings
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '▶'
-    " unicode symbols
-    let g:airline_left_sep = '»'
-    let g:airline_left_sep = '▶'
-    let g:airline_right_sep = '«'
-    let g:airline_right_sep = '◀'
-    let g:airline_symbols.linenr = '␊'
-    let g:airline_symbols.linenr = '␤'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.whitespace = 'Ξ'
-    " powerline symbols
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
+    " " Symbol Mappings
+    " let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#left_sep = ' '
+    " let g:airline#extensions#tabline#left_alt_sep = '▶'
+    " " unicode symbols
+    " let g:airline_left_sep = '»'
+    " let g:airline_left_sep = '▶'
+    " let g:airline_right_sep = '«'
+    " let g:airline_right_sep = '◀'
+    " let g:airline_symbols.linenr = '␊'
+    " let g:airline_symbols.linenr = '␤'
+    " let g:airline_symbols.linenr = '¶'
+    " let g:airline_symbols.branch = '⎇'
+    " let g:airline_symbols.paste = 'ρ'
+    " let g:airline_symbols.paste = 'Þ'
+    " let g:airline_symbols.paste = '∥'
+    " let g:airline_symbols.whitespace = 'Ξ'
+    " " powerline symbols
+    " let g:airline_left_sep = ''
+    " let g:airline_left_alt_sep = ''
+    " let g:airline_right_sep = ''
+    " let g:airline_right_alt_sep = ''
+    " let g:airline_symbols.branch = ''
+    " let g:airline_symbols.readonly = ''
+    " let g:airline_symbols.linenr = ''
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -247,12 +250,12 @@ let g:gitgutter_realtime = 0
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
-    " :help map-verbose
-    " :help daw
     " :map
     " :imap
     " :nmap
     " :verbose map
+    " :help map-verbose
+    " :help daw
     " :Listmaps
     " :verbose map! <C-Q>
 
@@ -325,6 +328,10 @@ let g:gitgutter_realtime = 0
     " Hide buffers from :ls when closed
     set hid
 
+    " Create a history of changes for this file that is not destroyed on close
+    set undofile
+    set undodir=~/vimHistory
+
     " Visual mode pressing * (for forward search)  or # (for backward search) searches for the current selection
     vnoremap <silent> * :<C-U>
       \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -374,7 +381,8 @@ let g:gitgutter_realtime = 0
         map <leader>cb <esc>:ls<CR>:bd<left><left>
 
         " Open file in new buffer
-        map <S-o> :e
+        " REMAP
+        " map <S-o> :e
 
         " Navigate to different buffers
         map <S-Right> <esc>:bnext<cr>
@@ -407,7 +415,8 @@ let g:gitgutter_realtime = 0
     map <leader>nt <esc>:ls<cr>:tabnew<Space>
 
     " Open a new tab with next file in the buffer loaded
-    nmap <C-o> <Esc>:tab sbnext<CR>
+    " REMAP THIS
+    " nmap <C-o> <Esc>:tab sbnext<CR>
 
     " Open a new tab with no filename
     nmap <C-t> <Esc>:tabnew<CR>
