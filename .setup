@@ -1,0 +1,9 @@
+Create a symlink to git version of vimrc (DO THIS IN HOME DIR):
+
+ln -sf ~/backipfiles/.vimrc ~/.vimrc 
+
+Install Vundle
+
+Install powerline fonts (add to git repo actually)
+
+
