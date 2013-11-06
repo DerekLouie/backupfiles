@@ -381,7 +381,7 @@ let g:gitgutter_realtime = 0
 
         " Open file in new buffer
         " REMAP
-        " map <S-o> :e
+        " map <S-o> :e<space>
 
         " Navigate to different buffers
         map <S-Right> <esc>:bnext<cr>
