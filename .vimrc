@@ -484,3 +484,5 @@ let g:gitgutter_realtime = 0
 "http://www.vim.org/docs.php
 "http://vimdoc.sourceforge.net/htmldoc/usr_toc.html
 "http://www.truth.sk/vim/vimbook-OPL.pdf
+"http://www.moolenaar.net/habits.html
+"http://www.oualline.com/vim-cook.html
