@@ -178,8 +178,8 @@
 
     " Activate Easymotion
     " nmap ' \w
-    nnoremap ' \g
-    nnoremap " \gE
+    nmap ' \W
+    nmap " \B
 
 " ------------------------------------------------------------------------- "
 
