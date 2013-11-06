@@ -476,3 +476,11 @@ let g:gitgutter_realtime = 0
     "map <leader>sa zg
     "map <leader>s? z=
 " ------------------------------------------------------------------------- "
+"http://zmievski.org/files/talks/codeworks-2009/vim-for-php-programmers.pdf
+"http://learnvimscriptthehardway.stevelosh.com/chapters/40.html
+"http://takac.github.io/2013/01/30/vim-grammar/
+"http://yanpritzker.com/2011/12/16/learn-to-speak-vim-verbs-nouns-and-modifiers/
+"http://takac.github.io/2013/01/30/vim-grammar/
+"http://www.vim.org/docs.php
+"http://vimdoc.sourceforge.net/htmldoc/usr_toc.html
+"http://www.truth.sk/vim/vimbook-OPL.pdf
