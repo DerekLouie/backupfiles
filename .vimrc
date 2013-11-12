@@ -30,6 +30,10 @@
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'mileszs/ack.vim'
     Bundle 'airblade/vim-gitgutter'
+    Bundle 'xolox/vim-misc'
+    Bundle 'xolox/vim-notes'
+    Bundle 'tpope/vim-fugitive'
+    Bundle 'mivok/vimtodo'
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'Lokaltog/powerline-fonts'
     " Bundle 'Lokaltog/vim-powerline'
@@ -171,11 +175,11 @@
     " :help easymotion
     let g:EasyMotion_leader_key = "\\"
     " let g:EasyMotion_leader_key = "'"
-    
+
     " Activate Easymotion
     " nmap ' \w
-    nnoremap ' \g
-    nnoremap " \gE
+    nmap ' \W
+    nmap " \B
 
 " ------------------------------------------------------------------------- "
 
@@ -189,8 +193,9 @@
 
 " ------------------------------------------------------------------------- "
 " Gitgutter
-let g:gitgutter_realtime = 0
+    let g:gitgutter_realtime = 0
 " ------------------------------------------------------------------------- "
+
 " ------------------------------------------------------------------------- "
 " Syntastic
     let g:syntastic_enable_signs = 1
@@ -246,6 +251,48 @@ let g:gitgutter_realtime = 0
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
+" Vim-notes
+    " Setup
+    let g:notes_directories = ['~/backupfiles/Notes']
+    let g:notes_suffix = '.txt'
+    let g:notes_tab_indents = 0
+    " let g:notes_shadowdir = '~/backupfiles/Notes'
+
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Vimtodo
+" help vimtodo
+    " You can also add a new entry, with the 'cn' alias. In insert mode, type 'cn'
+    " and a new todo entry along with the current date will be added.
+    " You can also use <LocalLeader>cn in normal mode to add a new entry.
+    " Press <LocalLeader>cs (\cs by default) to change the task status to 'DONE'
+    " <LocalLeader>cb to add a checkbox to the beginning of a line.
+    " To toggle a checkbox, use the <LocalLeader>cc command.
+    " VimTODO can move all completed tasks to another file to reduce clutter. The
+    " <LocalLeader>ca command is used for this. Any task that has been closed will
+    " be moved to the done file, which by default is 'done.txt' in the same
+    " directory as the todo file.
+    " The name of the done file can be changed using the g:todo_done_file .vimrc
+    " setting or on a per-file basis using the DONEFILE property.
+
+    " Setup
+    let g:todo_state_colors= {
+        \'DONE': 'Green',
+        \'CLOSED': 'Grey',
+        \'CANCELLED': 'Red',
+        \'TODO': 'Blue',
+        \'WAITING': 'Yellow',
+        \'HOLD': 'Grey',
+        \'INPROGRESS': 'Cyan',
+        \'SOMEDAY': 'Grey'
+        \}
+
+    let g:todo_done_file = expand("%:t:r")."-done.txt"
+
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
@@ -257,8 +304,7 @@ let g:gitgutter_realtime = 0
     " :help daw
     " :Listmaps
     " :verbose map! <C-Q>
-
-    " Set map leader
+ " Set map leader
     let mapleader = "\<Space>"
 
     "Change redo command
@@ -476,3 +522,13 @@ let g:gitgutter_realtime = 0
     "map <leader>sa zg
     "map <leader>s? z=
 " ------------------------------------------------------------------------- "
+"http://zmievski.org/files/talks/codeworks-2009/vim-for-php-programmers.pdf
+"http://learnvimscriptthehardway.stevelosh.com/chapters/40.html
+"http://takac.github.io/2013/01/30/vim-grammar/
+"http://yanpritzker.com/2011/12/16/learn-to-speak-vim-verbs-nouns-and-modifiers/
+"http://takac.github.io/2013/01/30/vim-grammar/
+"http://www.vim.org/docs.php
+"http://vimdoc.sourceforge.net/htmldoc/usr_toc.html
+"http://www.truth.sk/vim/vimbook-OPL.pdf
+"http://www.moolenaar.net/habits.html
+"http://www.oualline.com/vim-cook.html
