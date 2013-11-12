@@ -1,6 +1,6 @@
 Create a symlink to git version of vimrc (DO THIS IN HOME DIR):
 
-ln -sf ~/backipfiles/.vimrc ~/.vimrc 
+ln -sf ~/backupfiles/.vimrc ~/.vimrc 
 
 Install Vundle
 
