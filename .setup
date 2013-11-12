@@ -6,4 +6,5 @@ Install Vundle
 
 Install powerline fonts (add to git repo actually)
 
-
+for git: 
+    git config --global core.editor vim 
