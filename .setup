@@ -6,4 +6,8 @@ Install Vundle
 
 Install powerline fonts (add to git repo actually)
 
+create the vimhistory dir: ~/vimHistory
+
+put this in bash_profile "source ~/backupfiles/.bash_profile"
+
 
