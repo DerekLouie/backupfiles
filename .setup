@@ -1,6 +1,7 @@
 Create a symlink to git version of vimrc (DO THIS IN HOME DIR):
 
-ln -sf ~/backipfiles/.vimrc ~/.vimrc 
+ln -sf ~/backupfiles/.vimrc ~/.vimrc 
+to stop: unlink ~/.vimrc
 
 Install Vundle
 
@@ -8,3 +9,7 @@ Install powerline fonts (add to git repo actually)
 
 for git: 
     git config --global core.editor vim 
+create the vimhistory dir: ~/vimHistory
+
+put this in bash_profile "source ~/backupfiles/.bash_profile"
+
