@@ -288,7 +288,12 @@
         \'SOMEDAY': 'Grey'
         \}
 
-    let g:todo_done_file = expand("%:t:r")."-done.txt"
+    let g:todo_note_file = expand("%:t:r")."-note.txt"
+    " let g:todo_done_file = expand("%:t:r")."-done.txt"
+    nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
+    nmap <leader>2 \tns
+    nmap <leader>3 \tan
+    nmap <leader>4 \tad
 
 " ------------------------------------------------------------------------- "
 
