@@ -91,7 +91,6 @@
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
 
-<<<<<<< HEAD
     " Create backupdir for storing files
     if !exists("*InitBackupDir")
       function InitBackupDir()
@@ -136,11 +135,6 @@
       call InitBackupDir()
     endif
     
-=======
-    let mapleader = "\<Space>"
-    " map <leader>1 :echo expand('%:p:h').""<cr>
-
->>>>>>> c09ce91bbcb871770311423315b7fbbacf75674c
     " Setup syntax file from custom dir
     " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
     " map <leader>1 :echo expand('%:p:h').""<cr>
