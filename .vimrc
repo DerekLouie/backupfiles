@@ -91,6 +91,7 @@
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
 
+<<<<<<< HEAD
     " Create backupdir for storing files
     if !exists("*InitBackupDir")
       function InitBackupDir()
@@ -135,6 +136,11 @@
       call InitBackupDir()
     endif
     
+=======
+    let mapleader = "\<Space>"
+    " map <leader>1 :echo expand('%:p:h').""<cr>
+
+>>>>>>> c09ce91bbcb871770311423315b7fbbacf75674c
     " Setup syntax file from custom dir
     " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
     " map <leader>1 :echo expand('%:p:h').""<cr>
@@ -152,6 +158,32 @@
             autocmd! ColorScheme * hi CursorLineNR cterm=bold
         augroup END
 
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Functions, autocmd, control blocks
+    try                                                     " Specify the behavior when switching between buffers
+          set switchbuf=useopen,usetab,newtab
+            set stal=2
+        catch
+    endtry
+
+    if has("autocmd")                                       " Return to last edit position when opening files
+      au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+    endif
+
+    func! DeleteTrailingWS()                                " Delete trailing white space on save, useful for Python and CoffeeScript
+          exe "normal mz"
+            %s/\s\+$//ge
+              exe "normal `z"
+          endfunc
+
+    autocmd BufWrite *.py :call DeleteTrailingWS()
+    autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+    " OS LEVEL HACKS
+    " LEFT COMMAND MAPPED TO CTRL
+    " CAPSLOCK MAPPED TO EXC
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -308,6 +340,73 @@
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
+" Tagbar
+    let g:tagbar_ctags_bin='/usr/local/bin/ctags'  " Proper Ctags locations
+    let g:tagbar_width=26                          " Default is 40, seems too wide
+    "map <F7> :!ctags -R .<CR>
+    " Usage: In root directory type: 'ctags -R ' and that will make tag files for the whole directory
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Gitgutter
+    let g:gitgutter_realtime = 0
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Syntastic
+    let g:syntastic_enable_signs = 1
+    let g:syntastic_error_symbol = '✗'
+    let g:syntastic_warning_symbol = '⚠'
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Airline
+    set laststatus=2   " Always show the statusline
+    set encoding=utf-8 " Necessary to show Unicode glyphs
+
+    " To Turn on patched font support
+    " let g:Powerline_symbols = 'fancy'
+    let g:airline_powerline_fonts = 1
+
+    " Use unicode symbols instead
+    " if !exists('g:airline_symbols')
+        " let g:airline_symbols = {}
+    " endif
+
+    " " Symbol Mappings
+    " let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#left_sep = ' '
+    " let g:airline#extensions#tabline#left_alt_sep = '▶'
+    " " unicode symbols
+    " let g:airline_left_sep = '»'
+    " let g:airline_left_sep = '▶'
+    " let g:airline_right_sep = '«'
+    " let g:airline_right_sep = '◀'
+    " let g:airline_symbols.linenr = '␊'
+    " let g:airline_symbols.linenr = '␤'
+    " let g:airline_symbols.linenr = '¶'
+    " let g:airline_symbols.branch = '⎇'
+    " let g:airline_symbols.paste = 'ρ'
+    " let g:airline_symbols.paste = 'Þ'
+    " let g:airline_symbols.paste = '∥'
+    " let g:airline_symbols.whitespace = 'Ξ'
+    " " powerline symbols
+    " let g:airline_left_sep = ''
+    " let g:airline_left_alt_sep = ''
+    " let g:airline_right_sep = ''
+    " let g:airline_right_alt_sep = ''
+    " let g:airline_symbols.branch = ''
+    " let g:airline_symbols.readonly = ''
+    " let g:airline_symbols.linenr = ''
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Nerd_Commenter
+    " Setup
+    let NERDSpaceDelims=1
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
 " Vim-notes
     " Setup
     let g:notes_directories = ['~/backupfiles/Notes']
@@ -335,16 +434,20 @@
 
     " Setup
     ":help cterm-colors
-    let g:todo_states=[['TODO(t)', 'NOTE(n)', '|', 'DONE(d)']]
-    let g:todo_state_colors= {
-        \'DONE': 'Green',
-        \'CLOSED': 'Grey',
-        \'CANCELLED': 'Red',
-        \'TODO': 'Red',
-        \'NOTE': 'Blue',
-        \}
-    
+    " let g:todo_states=[['TODO(t)', 'NOTE(n)', '|', 'DONE(d)']]
+    " let g:todo_state_colors= {
+        " \'DONE': 'Green',
+        " \'CLOSED': 'Grey',
+        " \'CANCELLED': 'Red',
+        " \'TODO': 'Red',
+        " \'NOTE': 'Blue',
+        " \}
+    " let g:todo_note_file = expand("%:t:r")."-note.txt"
     " let g:todo_done_file = expand("%:t:r")."-done.txt"
+    " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
+    " nmap <leader>2 \tns
+    " nmap <leader>3 \tan
+    " nmap <leader>4 \tad
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
