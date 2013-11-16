@@ -34,6 +34,13 @@
     Bundle 'xolox/vim-notes'
     Bundle 'tpope/vim-fugitive'
     Bundle 'mivok/vimtodo'
+    " Must have NPM and a ruby gem
+    Bundle 'suan/vim-instant-markdown'
+    " Must install tmux
+    " Bundle 'ervandew/screen'
+    Bundle 'benmills/vimux'
+    " For Tmux Nav
+    Bundle 'christoomey/vim-tmux-navigator'
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'Lokaltog/powerline-fonts'
     " Bundle 'Lokaltog/vim-powerline'
@@ -83,6 +90,50 @@
     set wrap                                                " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
+
+    " Create backupdir for storing files
+    if !exists("*InitBackupDir")
+      function InitBackupDir()
+        if has('win32') || has('win32unix') "windows/cygwin
+          let separator = "_"
+        else
+          let separator = "."
+        endif
+        let parent = $HOME .'/' . separator . 'vim/'
+        let backup = parent . 'backup/'
+        let tmp = parent . 'tmp/'
+        if exists("*mkdir")
+          if !isdirectory(parent)
+            call mkdir(parent)
+          endif
+          if !isdirectory(backup)
+            call mkdir(backup)
+          endif
+          if !isdirectory(tmp)
+            call mkdir(tmp)
+          endif
+        endif
+        let missing_dir = 0
+        if isdirectory(tmp)
+          execute 'set backupdir=' . escape(backup, " ") . "/,."
+        else
+          let missing_dir = 1
+        endif
+        if isdirectory(backup)
+          execute 'set directory=' . escape(tmp, " ") . "/,."
+        else
+          let missing_dir = 1
+        endif
+        if missing_dir
+          echo "Warning: Unable to create backup directories: " . backup ." and " . tmp
+          echo "Try: mkdir -p " . backup
+          echo "and: mkdir -p " . tmp
+          set backupdir=.
+          set directory=.
+        endif
+      endfunction
+      call InitBackupDir()
+    endif
     
     " Setup syntax file from custom dir
     " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
@@ -185,7 +236,8 @@
     " nmap ' \w
     nmap ' \W
     nmap " \B
-
+    vmap ' \W
+    vmap " \B
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -259,7 +311,7 @@
 " Vim-notes
     " Setup
     let g:notes_directories = ['~/backupfiles/Notes']
-    let g:notes_suffix = '.txt'
+    let g:notes_suffix = '.markdown'
     let g:notes_tab_indents = 0
     " let g:notes_shadowdir = '~/backupfiles/Notes'
 
@@ -320,10 +372,10 @@
     map <C-t> <ESC>:TagbarToggle<CR>
 
     " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ →
-        noremap <S-H> <C-W>h
-        noremap <S-J> <C-W>j
-        noremap <S-K> <C-W>k
-        noremap <S-L> <C-W>l
+        noremap <C-H> <C-W>h
+        noremap <C-J> <C-W>j
+        noremap <C-K> <C-W>k
+        noremap <C-L> <C-W>l
 
     " Press space twice to comment current/selected line(s)
     map <leader><Space> <plug>NERDCommenterToggle
@@ -343,8 +395,8 @@
     " Fast source vimrc
     map <leader>s <Esc>:source $MYVIMRC<CR>
 
-   " Fast saving
-    map <leader>w :w!<CR>
+    " Fast saving
+    nnoremap <leader>w :w<CR>
 
     " Ignore compiled files
     set wildignore=*.o,*~,*.pyc
@@ -392,14 +444,14 @@
       \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
       \gV:call setreg('"', old_reg, old_regtype)<CR>
 
-    " Switch CWD to the directory of the open buffer
+    " Switch Current Working Directory to the directory of the open buffer
     map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
     " Move a line of text using shift+[j/k] on mac
-    nmap <C-j> mz:m+<cr>`z
-    nmap <C-k> mz:m-2<cr>`z
-    vmap <C-j> :m'>+<cr>`<my`>mzgv`yo`z
-    vmap <C-k> :m'<-2<cr>`>my`<mzgv`yo`z
+    nmap <S-Down> mz:m+<cr>`z
+    nmap <S-Up> mz:m-2<cr>`z
+    vmap <S-Down> :m'>+<cr>`<my`>mzgv`yo`z
+    vmap <S-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 
     " Remove the Windows ^M - when the encodings gets messed up
     noremap <Leader>mm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -489,6 +541,10 @@
 
     " Make entire file of single lines a comma separated list
     nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
+    
+    " joining lines
+    noremap ,j :join</cr><cr>
+    
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -538,3 +594,5 @@
 "http://www.truth.sk/vim/vimbook-OPL.pdf
 "http://www.moolenaar.net/habits.html
 "http://www.oualline.com/vim-cook.html
+" REMOVE WHITESPACES
+"s/\v]\s+"/]"/

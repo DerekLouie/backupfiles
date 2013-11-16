@@ -13,3 +13,21 @@ create the vimhistory dir: ~/vimHistory
 
 put this in bash_profile "source ~/backupfiles/.bash_profile"
 
+Intall tmux
+
+link .screenrc
+
+also .tmux.conf
+
+brew install reattach-to-user-namespace
+
+
+
+
+brew list
+ack				fontconfig			libgpg-error			libxslt				php54				unixodbc
+apple-gcc42			fontforge			libksba				libyaml				pkg-config			vim
+autoconf			freetype			libpng				mariadb				readline			zlib
+automake			gettext				libtiff				markdown			reattach-to-user-namespace
+bash-completion			jpeg				libtool				node				ruby-build
+cmake				libevent			libxml2				openssl				tmux
