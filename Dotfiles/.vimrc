@@ -33,7 +33,8 @@
     Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-notes'
     Bundle 'tpope/vim-fugitive'
-    Bundle 'mivok/vimtodo'
+    Bundle 'DerekLouie/vimTodoWithNotes'
+    " Bundle 'mivok/vimtodo'
     " Must have NPM and a ruby gem
     Bundle 'suan/vim-instant-markdown'
     " Must install tmux
@@ -41,6 +42,7 @@
     Bundle 'benmills/vimux'
     " For Tmux Nav
     Bundle 'christoomey/vim-tmux-navigator'
+    Bundle 'xolox/vim-session'
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'Lokaltog/powerline-fonts'
     " Bundle 'Lokaltog/vim-powerline'
@@ -378,6 +380,16 @@
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
+" Vim-session
+    " let g:session_autosave = "prompt"
+    let g:session_autosave = "yes"
+    silent !mkdir ~/.vim/sessions > /dev/null 2>&1
+    let g:session_directory = "~/.vim/sessions"
+    let g:session_default_name = expand("%:t:r")."-session"
+    let g:session_default_overwrite = 0
+    let g:session_extension = ".vim"
+
+" ------------------------------------------------------------------------- "
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
@@ -627,3 +639,4 @@
 "http://www.oualline.com/vim-cook.html
 " REMOVE WHITESPACES
 "s/\v]\s+"/]"/
+" you can call vim functions defined in vimrc with ':call funct()'

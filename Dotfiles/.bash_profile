@@ -16,3 +16,6 @@ alias glas='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(w
 # gl is just current branch
 # gls is just current branch simplified
 # glas is all branches simplified
+
+# list all symlinked files
+alias lss="find . -type l -maxdepth 1"
