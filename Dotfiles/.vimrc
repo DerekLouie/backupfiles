@@ -93,6 +93,12 @@
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
 
+    " Set map leader
+    let mapleader = "\<Space>"
+    
+    "test if vimrc is being sourced
+    nmap <leader>9 :echo expand('%:p:h').""<cr>
+
     " Make background in vim same transparency as terminal
     hi Normal          ctermfg=252 ctermbg=none
 
@@ -144,7 +150,6 @@
     " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
     " map <leader>1 :echo expand('%:p:h').""<cr>
     " let &runtimepath.=','.escape("~/backupfiles/syntax",'\,')
-
     "Make current line's number bold
         set cursorline
         " hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
@@ -205,6 +210,9 @@
 
     autocmd BufWrite *.py :call DeleteTrailingWS()
     autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+    " Can't stop the enter prompt b/c redraw, kind of annoying
+    " autocmd VimEnter * :OpenSession
 
     " OS LEVEL HACKS
     " LEFT COMMAND MAPPED TO CTRL
@@ -378,9 +386,9 @@
     " let g:todo_done_file = expand("%:t:r")."-done.txt"
     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
     " nmap <leader>2 \tns
+    " nmap <leader>1 \tmn
     " nmap <leader>3 \tan
     " nmap <leader>4 \tad
-    nmap <leader>1 <esc>:echo "hello"<cr>
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
@@ -405,8 +413,6 @@
     " :help daw
     " :Listmaps
     " :verbose map! <C-Q>
- " Set map leader
-    let mapleader = "\<Space>"
 
     "Change redo command
     map <C-y> <C-R> "Ctrl + Y = redo
@@ -644,3 +650,4 @@
 " REMOVE WHITESPACES
 "s/\v]\s+"/]"/
 " you can call vim functions defined in vimrc with ':call funct()'
+" Vimrc doesn't load sometimes cause of training whitespaces
