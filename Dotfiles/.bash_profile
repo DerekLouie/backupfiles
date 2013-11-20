@@ -19,3 +19,5 @@ alias glas='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(w
 
 # list all symlinked files
 alias lss="find . -type l -maxdepth 1"
+# see where a file is symlinked to, (requires you to put an arg (the file) in after )
+alias lnp="stat -f %Y"

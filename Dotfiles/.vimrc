@@ -93,6 +93,9 @@
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
 
+    " Make background in vim same transparency as terminal
+    hi Normal          ctermfg=252 ctermbg=none
+
     " Create backupdir for storing files
     if !exists("*InitBackupDir")
       function InitBackupDir()
@@ -377,6 +380,7 @@
     " nmap <leader>2 \tns
     " nmap <leader>3 \tan
     " nmap <leader>4 \tad
+    nmap <leader>1 <esc>:echo "hello"<cr>
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
