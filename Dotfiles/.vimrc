@@ -95,7 +95,7 @@
 
     " Set map leader
     let mapleader = "\<Space>"
-    
+
     "test if vimrc is being sourced
     nmap <leader>9 :echo expand('%:p:h').""<cr>
 
@@ -382,13 +382,19 @@
         " \'TODO': 'Red',
         " \'NOTE': 'Blue',
         " \}
-    " let g:todo_note_file = expand("%:t:r")."-note.txt"
-    " let g:todo_done_file = expand("%:t:r")."-done.txt"
+    let g:todo_note_file = expand("%:t:r")."-note.txt"
+    let g:todo_done_file = expand("%:t:r")."-done.txt"
+    " Todo prompt
+    nmap <leader>cc \tp
+    " Todo finish
+    nmap <leader>f \tns
+    " Todo move notes
+    nmap <leader>1 \tmn
+    " Todo archive done
+    nmap <leader>2 \tad
+    " Todo archive notes
+    nmap <leader>3 \tan
     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
-    " nmap <leader>2 \tns
-    " nmap <leader>1 \tmn
-    " nmap <leader>3 \tan
-    " nmap <leader>4 \tad
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "
