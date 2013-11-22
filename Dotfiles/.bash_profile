@@ -9,7 +9,7 @@ alias gs="git status"
 alias gp="git push"
 alias gl="git pull"
 alias test="echo changed"
-
+alias gb="echo git branch --set-upstream local-branch-name origin/remote-branch-name"
 alias gl='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
 alias gls='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" --simplify-by-decoration'
 alias glas='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset" --all --simplify-by-decoration'

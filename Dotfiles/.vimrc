@@ -46,6 +46,11 @@
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'Lokaltog/powerline-fonts'
     " Bundle 'Lokaltog/vim-powerline'
+    Bundle "MarcWeber/vim-addon-mw-utils"
+    Bundle "tomtom/tlib_vim"
+    Bundle "garbas/vim-snipmate"
+    Bundle "honza/vim-snippets"
+    " Bundle "tsaleh/vim-matchit"
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -590,10 +595,10 @@
     nmap <leader>m <esc>:tabs<cr>:tabm<space>
 
     " Focus on the next tab
-    nmap <Tab> <esc>:tabn<cr>
+    noremap <Tab> <esc>:tabn<cr>
 
     " Focus on the previous tab
-    nmap <S-Tab> <esc>:tabp<cr>
+    noremap <S-Tab> <esc>:tabp<cr>
 
     " Clear all trailing spaces
     nmap \\ <esc>:%s/\s\+$//e<CR>
@@ -602,7 +607,10 @@
     nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
 
     " joining lines
-    noremap ,j :join</cr><cr>
+    noremap ,j :join<cr>
+
+    " Open Session
+    noremap <leader>o <esc>:OpenSession<Space><C-d>
 
 " ------------------------------------------------------------------------- "
 
