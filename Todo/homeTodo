@@ -1,0 +1,82 @@
+# vim:ft=todo
+:SETTINGS:
+    +STATECOLORS: DONE:Green, CLOSED:Grey, CANCELLED:Red, NOTE:Blue, TODO:Red, NOTES:DarkMagenta, TASKS:DarkBlue
+
+TASKS:
+TODO 2013-11-25 When disable c-o mapping in vimrc, c-o has some weird behavior, why?
+TODO 2013-11-22 do rebate for tv
+TODO 2013-11-21 Refund from Arcadia Optometry, chase.
+TODO 2013-11-21 Are contacts shipped yet? If so, when do they arrive?
+
+TASKS for Home:
+
+TODO
+    Make a template file to insert into the top of notes:
+    https://www.google.com/search?q=vim+insert+another+file+into+current+file&oq=vim+insert+another+file+into+current+file&aqs=chrome..69i57.9221j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
+    BUT should do expand for donefile/notefiles
+TODO
+    What is the use of restartvim?
+    https://github.com/xolox/vim-session
+TODO
+    Learn vim to press esc and put cursor at end of visual selection:
+    https://www.google.com/search?q=vim+replace+under+cursor&oq=vim+replace+under+cursor&aqs=chrome..69i57j0.6068j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8#es_sm=119&espv=210&q=replace+visual+without+losing+clipboard+vim
+TODO 
+    Get vim to recognize .md files
+    https://github.com/suan/vim-instant-markdown
+    http://stackoverflow.com/questions/10964681/enabling-markdown-highlighting-in-vim
+TODO
+    Download: 
+    http://www.filecrop.com/79897335/index.html
+TODO
+    Make the notefile source vimrc
+    Right now on <space>s changes the colorscheme
+TODO 
+    At home make sure http://vanbosse.be/blog/detail/a-homebrew-lamp-stack
+    /usr/local/Cellar/php54/5.4.11/libexec/apache2/libphp5.so 
+    in /etc/apache2/httpd.conf points to right place.
+TODO 
+    Make quick clean way to clean ice vents
+    show bacteria count in ice vending machines
+    Pursue reform
+    Profit
+TODO 
+    Change flight to account for court date
+    Price?
+
+
+LEARN:
+
+
+TODO 2013-11-22 Vim-tmux
+    https://github.com/aziz/tmuxinator
+    Look at Mike's setup:
+    #!/bin/bash
+    if ! tmux has-session -t dev; then
+       tmux new -s dev -d
+       tmux split-window -v -p 25 -t dev
+       tmux new-window -t dev -n log
+       tmux send-keys -t dev:2 'err' C-m
+       tmux send-keys -t dev:1.1 'vim' C-m
+       tmux send-keys -t dev:1.1 C-p
+       tmux select-window -t dev:1
+       tmux select-pane -t 2
+    fi
+    TERM=xterm-256color tmux attach -t dev
+
+TODO 2013-11-22 Snippets: vim snipmate
+
+TODO 2013-11-22 Fugitive: Vim git stuff
+
+TODO 2013-11-22 Tags for vimtodo
+
+
+NOTES:
+
+
+NOTE 2013-11-25 test 1
+NOTE 2013-11-25 test 1
+NOTE 2013-11-25 test 2
+NOTE 2013-11-25 test Moved 3
+NOTE 2013-11-25 test Moved 2
+NOTE 2013-11-25 test Moved 3
+
