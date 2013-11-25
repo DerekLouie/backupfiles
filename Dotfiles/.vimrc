@@ -50,7 +50,8 @@
     Bundle "tomtom/tlib_vim"
     Bundle "garbas/vim-snipmate"
     Bundle "honza/vim-snippets"
-    " Bundle "tsaleh/vim-matchit"
+    " Match HTML and other tags
+    Bundle "tsaleh/vim-matchit"
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -390,13 +391,13 @@
     let g:todo_note_file = expand("%:t:r")."-note.txt"
     let g:todo_done_file = expand("%:t:r")."-done.txt"
     " Todo prompt
-    nmap <leader>cc \tp
+    nmap <leader>c \tp
     " Todo finish
     nmap <leader>f \tns
+    " Todo move done
+    nmap <leader>1 \tad
     " Todo move notes
-    nmap <leader>1 \tmn
-    " Todo archive done
-    nmap <leader>2 \tad
+    nmap <leader>2 \tmn
     " Todo archive notes
     nmap <leader>3 \tan
     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
@@ -610,7 +611,7 @@
     noremap ,j :join<cr>
 
     " Open Session
-    noremap <leader>o <esc>:OpenSession<Space><C-d>
+    noremap <C-o> <esc>:OpenSession<Space><C-d>
 
 " ------------------------------------------------------------------------- "
 
