@@ -3,6 +3,9 @@
     +STATECOLORS: DONE:Green, CLOSED:Grey, CANCELLED:Red, NOTE:Blue, TODO:Red, NOTES:DarkMagenta, TASKS:DarkBlue
 
 TASKS:
+TODO 2013-11-26 Take care of graduation stuff
+TODO 2013-11-25 Get todo.txt working and sync'd up with dropbox 
+TODO 2013-11-25 Push changes to archiveDone from mba and test
 TODO 2013-11-25 When disable c-o mapping in vimrc, c-o has some weird behavior, why?
 TODO 2013-11-22 do rebate for tv
 TODO 2013-11-21 Refund from Arcadia Optometry, chase.
@@ -10,6 +13,20 @@ TODO 2013-11-21 Are contacts shipped yet? If so, when do they arrive?
 
 TASKS for Home:
 
+TODO 
+    Get ctags working for JS
+    http://stackoverflow.com/questions/4477322/how-to-make-vim-ctags-works-for-modern-javascript
+    https://www.google.com/search?q=ctags+for+javascript&oq=ctags+for+javascript&aqs=chrome..69i57.2611j0j1&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
+TODO
+    Understand registers so I don't keep losing paste on delete
+    https://www.google.com/search?q=vim+registers&oq=vim+registers&aqs=chrome..69i57.1286j0j1&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
+    http://stackoverflow.com/questions/54255/in-vim-is-there-a-way-to-delete-without-putting-text-in-the-register
+    https://www.google.com/search?q=vim+delete+without+losing+paste&oq=vim+delete+without+losing+paste&aqs=chrome..69i57.6671j0j1&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
+TODO
+    Make vimplugin
+    Opens Vsplit and populates it with open buffers and bookmarks
+    when you highlight them and press enter you go to that place
+    http://superuser.com/questions/420217/vim-dynamic-list-of-open-buffers-in-a-window
 TODO
     Make a template file to insert into the top of notes:
     https://www.google.com/search?q=vim+insert+another+file+into+current+file&oq=vim+insert+another+file+into+current+file&aqs=chrome..69i57.9221j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
@@ -46,6 +63,12 @@ TODO
 
 LEARN:
 
+TODO
+    http://www.bestofvim.com/plugin/gundo/
+    https://www.google.com/search?q=vim+see+undo's&espv=210&es_sm=119&source=lnms&sa=X&ei=9gmVUs_kEYfYoAScjYKwCw&ved=0CAgQ_AUoAA&biw=1440&bih=735&dpr=2#es_sm=119&espv=210&q=best+undo+plugin+gundo
+
+
+
 
 TODO 2013-11-22 Vim-tmux
     https://github.com/aziz/tmuxinator
@@ -72,11 +95,4 @@ TODO 2013-11-22 Tags for vimtodo
 
 NOTES:
 
-
-NOTE 2013-11-25 test 1
-NOTE 2013-11-25 test 1
-NOTE 2013-11-25 test 2
-NOTE 2013-11-25 test Moved 3
-NOTE 2013-11-25 test Moved 2
-NOTE 2013-11-25 test Moved 3
 

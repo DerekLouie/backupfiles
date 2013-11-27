@@ -52,6 +52,7 @@
     Bundle "honza/vim-snippets"
     " Match HTML and other tags
     Bundle "tsaleh/vim-matchit"
+    Bundle "corntrace/bufexplorer"
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -98,6 +99,10 @@
     set wrap                                                " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
+
+    set exrc                                                " enable per-directory .vimrc files
+
+    set secure                                              " disable unsafe commands in local .vimrc files
 
     " Set map leader
     let mapleader = "\<Space>"
@@ -584,7 +589,7 @@
 
     " Open a new tab with next file in the buffer loaded
     " REMAP THIS
-    " nmap <C-o> <Esc>:tab sbnext<CR>
+    nmap <leader><tab> <Esc>:tab sbnext<CR>
 
     " Open a new tab with no filename
     nmap <C-t> <Esc>:tabnew<CR>
@@ -618,6 +623,8 @@
 " ------------------------------------------------------------------------- "
 " TO print out what a setting is type:
     ":set *SETTINGNAME*?
+" In command mode (after pressing :)
+    " pressing ctrl+f will allow you to see and edit command history
 " ------------------------------------------------------------------------- "
 
 " ------------------------------------------------------------------------- "

@@ -50,3 +50,11 @@ cmake				libevent			libxml2				openssl				tmux
 ln -sf ~/backupfiles/.vimrc ~/.vimrc 
 ln -sf ~/backupfiles/.screenrc ~/.screenrc
 ln -sf ~/backupfiles/.tmux.conf ~/.tmux.conf
+
+Todo:
+   https://www.google.com/search?q=todo.txt&oq=todo.txt&aqs=chrome.0.69i59j5j69i60j69i65l2j69i61.1716j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-://www.google.com/search?q=todo.txt&oq=todo.txt&aqs=chrome.0.69i59j5j69i60j69i65l2j69i61.1716j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8 
+   https://github.com/ginatrapani/todo.txt-cli
+   https://github.com/ginatrapani/todo.txt-cli/wiki/user-documentation
+   https://github.com/ginatrapani/todo.txt-cli/wiki/Quick-Start-Guide
+   https://www.google.com/search?q=todo.txt+on+mac&oq=todo.txt+on+mac&aqs=chrome..69i57j0j69i60j0l3.11700j0j7&sourceid=chrome&espv=210&es_sm=119&ie=UTF-8
+   ~~~http://dangerisgo.com/blog/2012/09/20/setup-todo-dot-txt-cli-on-osx-with-homebrew-and-dropbox/
