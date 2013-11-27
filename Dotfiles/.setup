@@ -11,7 +11,7 @@ for git:
     git config --global core.editor vim 
 create the vimhistory dir: ~/vimHistory
 
-put this in bash_profile "source ~/backupfiles/.bash_profile"
+put this in bash_profile "source ~/backupfiles/Dotfiles/.bash_profile"
 
 Intall tmux
 
