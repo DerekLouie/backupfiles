@@ -248,8 +248,8 @@
     " :cnoreabbrev wq CloseSession<bar>w<bar>q
     :cnoreabbrev <silent> q CloseSession<bar>q
     :cnoreabbrev <silent> Q CloseSession<bar>q
-    :cnoreabbrev <silent> wq CloseSession<bar>w<bar>q
-    :cnoreabbrev <silent> WQ CloseSession<bar>w<bar>q
+    :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
+    :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
     
     " exit with capitols
     :command WQ wq
