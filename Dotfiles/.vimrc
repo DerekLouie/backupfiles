@@ -46,14 +46,35 @@
     " Bundle 'Raimondi/delimitMate'
     " Bundle 'Lokaltog/powerline-fonts'
     " Bundle 'Lokaltog/vim-powerline'
-    Bundle "MarcWeber/vim-addon-mw-utils"
-    Bundle "tomtom/tlib_vim"
-    Bundle "garbas/vim-snipmate"
-    Bundle "honza/vim-snippets"
-    " Match HTML and other tags
-    Bundle "tsaleh/vim-matchit"
+    Bundle 'MarcWeber/vim-addon-mw-utils'
+    Bundle 'tomtom/tlib_vim'
+    Bundle 'garbas/vim-snipmate'
+    Bundle 'honza/vim-snippets'
+    Bundle 'tsaleh/vim-matchit'
+    Bundle 'corntrace/bufexplorer'
+    Bundle 'mhinz/vim-startify'
+    Bundle 'sjl/clam.vim'
+    Bundle 'sjl/vitality.vim'
+    Bundle 'sandeepcr529/Buffet.vim'
+    Bundle 'coderifous/textobj-word-column.vim'
+    Bundle 'troydm/pb.vim'
+    Bundle 'troydm/easybuffer.vim'
+    Bundle 'kshenoy/vim-signature'
+    Bundle 'vim-scripts/YankRing.vim'
+    Bundle 'chrisbra/Recover.vim'
+    Bundle 'mihaifm/vimpanel'
+    Bundle 'goldfeld/vim-seek'
+    Bundle 'junegunn/vim-scroll-position'
+    Bundle 'justincampbell/vim-eighties.git'
+    Bundle 'mhinz/vim-signify'
+    Bundle 'sk1418/Join'
+    Bundle 'drmikehenry/vim-fixkey'
+    Bundle 'rhysd/clever-f.vim'
+    " MAY CRASH IF USED WITH FUGITIVE
+    " Need to do some stuff with git-config to get working
+    " http://sjl.bitbucket.org/splice.vim/#installation
+    " Bundle 'sjl/splice.vim'
     Bundle "sjl/gundo.vim"
-    Bundle "corntrace/bufexplorer"
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -222,7 +243,26 @@
 
     autocmd BufWrite *.py :call DeleteTrailingWS()
     autocmd BufWrite *.coffee :call DeleteTrailingWS()
+    
+    " :cnoreabbrev q CloseSession<bar>q
+    " :cnoreabbrev wq CloseSession<bar>w<bar>q
+    :cnoreabbrev <silent> q CloseSession<bar>q
+    :cnoreabbrev <silent> Q CloseSession<bar>q
+    :cnoreabbrev <silent> wq CloseSession<bar>w<bar>q
+    :cnoreabbrev <silent> WQ CloseSession<bar>w<bar>q
+    
+    " exit with capitols
+    :command WQ wq
+    :command Wq wq
+    :command W w
+    :command Q q
 
+    function! CloseSess()
+        :CloseSession
+    endfunction
+
+    " This doesn't work, kind of annoying
+    " autocmd vimLeave * silent call CloseSess()
 
     if &term =~ '^screen'
         " tmux will send xterm-style keys when its xterm-keys option is on
