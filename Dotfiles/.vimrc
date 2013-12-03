@@ -223,8 +223,6 @@
     autocmd BufWrite *.py :call DeleteTrailingWS()
     autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-    " Can't stop the enter prompt b/c redraw, kind of annoying
-    " autocmd VimEnter * :OpenSession
 
     if &term =~ '^screen'
         " tmux will send xterm-style keys when its xterm-keys option is on
@@ -427,8 +425,23 @@
     let g:session_default_overwrite = 0
     let g:session_extension = ".vim"
 
+    " Open Session
+    noremap <C-o> <esc>:OpenSession<Space><C-d>
+   
+    " Make sure when you quit and you open a new vim the files are not kept
+    " open
+    
+    " autocmd VimEnter * :silent CloseSession
+
+    " function! TearItDown()
+        " exec ':CloseSession'
+    " endfunction
+
+    " au VimLeave * silent call TearItDown()
+        
+
 " ------------------------------------------------------------------------- "
-"
+
 " ------------------------------------------------------------------------- "
 " Vimux
     nmap <leader>0 <esc>:call VimuxOpenPane()<cr>
@@ -565,9 +578,12 @@
         noremap <C-J> <C-W>j
         noremap <C-K> <C-W>k
         noremap <C-L> <C-W>l
+
     " Open buffer in vertical split
         " noremap <leader>??? <esc>:ls<cr>:vert<space>belowright<space>sb<space>
 
+    " Open a new vsplit with a specific number of lines:
+        " noremap <leader>8 :20vnew<cr>
 
     " ------------------------------------------------------------------------- "
 
@@ -646,9 +662,6 @@
 
     " joining lines
     noremap ,j :join<cr>
-
-    " Open Session
-    noremap <C-o> <esc>:OpenSession<Space><C-d>
 
 " ------------------------------------------------------------------------- "
 
