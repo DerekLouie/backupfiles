@@ -19,6 +19,7 @@ alias glas='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(w
 alias lss="find . -type l -maxdepth 1"
 # see where a file is symlinked to, (requires you to put an arg (the file) in after )
 alias lnp="stat -f %Y"
+alias c="clear"
 
 alias tmux="TERM=screen-256color tmux"
 alias tumx='tmux -2'

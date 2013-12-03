@@ -74,6 +74,7 @@
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
+    Bundle "sjl/gundo.vim"
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -465,6 +466,17 @@
     let g:session_extension = ".vim"
 
 " ------------------------------------------------------------------------- "
+"
+" ------------------------------------------------------------------------- "
+" Vimux
+    nmap <leader>0 <esc>:call VimuxOpenPane()<cr>
+    nmap <leader>00 <esc>:call VimuxInspectRunner()<cr>
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Gundo
+    nnoremap <leader>9 <esc>:GundoToggle<CR>
+" ------------------------------------------------------------------------- "
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
@@ -485,12 +497,6 @@
 
     " Ctrl + t = Toggle TagBar
     map <C-t> <ESC>:TagbarToggle<CR>
-
-    " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ →
-        noremap <C-H> <C-W>h
-        noremap <C-J> <C-W>j
-        noremap <C-K> <C-W>k
-        noremap <C-L> <C-W>l
 
     " Press space twice to comment current/selected line(s)
     map <leader><Space> <plug>NERDCommenterToggle
@@ -548,6 +554,8 @@
     silent !mkdir ~/vimHistory > /dev/null 2>&1
     set undodir=~/vimHistory
 
+    set splitright
+
     " Visual mode pressing * (for forward search)  or # (for backward search) searches for the current selection
     vnoremap <silent> * :<C-U>
       \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
@@ -584,6 +592,22 @@
 
     " Insert new line after current one
     nmap <leader><cr> <esc>:pu_<cr>
+    
+    " ------------------------------------------------------------------------- "
+    " Split Navigation
+        nmap <C-w>- <esc>:vertical resize -5<cr>
+        nmap <C-w>= <esc>:vertical resize +5<cr>
+
+    " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ →
+        noremap <C-H> <C-W>h
+        noremap <C-J> <C-W>j
+        noremap <C-K> <C-W>k
+        noremap <C-L> <C-W>l
+    " Open buffer in vertical split
+        " noremap <leader>??? <esc>:ls<cr>:vert<space>belowright<space>sb<space>
+
+
+    " ------------------------------------------------------------------------- "
 
     " ------------------------------------------------------------------------- "
     " Buffer Navigation
