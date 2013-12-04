@@ -252,10 +252,10 @@
     :cnoreabbrev <silent> WQ CloseSession<bar>w<bar>q
     
     " exit with capitols
-    :command WQ wq
-    :command Wq wq
-    :command W w
-    :command Q q
+    " :command WQ wq
+    " :command Wq wq
+    " :command W w
+    " :command Q q
 
     function! CloseSess()
         :CloseSession
