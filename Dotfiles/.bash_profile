@@ -23,10 +23,14 @@ alias c="clear"
 
 alias tmux="TERM=screen-256color tmux"
 alias tumx='tmux -2'
-tmux source-file ~/.tmux.conf
+if [ -n "$TMUX" ]; then
+    # called inside tmux session, do tmux things
+    tmux source-file ~/.tmux.conf
+fi
 alias tls='tmux list-sessions'
 alias ta='tmux attach-session -t'
 alias tn='tmux new -s '
 
-alias bm='cd ~/bookmarks'
-alias b='~/bookmarks'
+alias b='cd ~/backupfiles'
+alias bd='cd ~/backupfiles/Dotfiles'
+alias bt='cd ~/backupfiles/Todo'
