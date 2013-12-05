@@ -5,4 +5,10 @@
 [color]
 	ui = true
 [push]
-	default = current
+    default = current
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	d = difftool
