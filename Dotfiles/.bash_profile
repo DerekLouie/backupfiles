@@ -26,6 +26,7 @@ alias tumx='tmux -2'
 tmux source-file ~/.tmux.conf
 alias tls='tmux list-sessions'
 alias ta='tmux attach-session -t'
+alias tn='tmux new -s '
 
 alias bm='cd ~/bookmarks'
 alias b='~/bookmarks'
