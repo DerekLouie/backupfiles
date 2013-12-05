@@ -261,6 +261,10 @@
         :CloseSession
     endfunction
 
+    function! MakeNoteFile()
+        " Add stuff to this to put the line at the top of the file and :e
+    endfunction
+
     " This doesn't work, kind of annoying
     " autocmd vimLeave * silent call CloseSess()
 
@@ -433,13 +437,15 @@
     " Setup
     ":help cterm-colors
     " let g:todo_states=[['TODO(t)', 'NOTE(n)', '|', 'DONE(d)']]
-    " let g:todo_state_colors= {
-        " \'DONE': 'Green',
-        " \'CLOSED': 'Grey',
-        " \'CANCELLED': 'Red',
-        " \'TODO': 'Red',
-        " \'NOTE': 'Blue',
-        " \}
+    let g:todo_state_colors= {
+        \'DONE': 'Green',
+        \'CLOSED': 'Grey',
+        \'CANCELLED': 'Red',
+        \'TODO': 'Red',
+        \'NOTE': 'Blue',
+        \'NOTES': 'DarkMagenta', 
+        \'TASKS': 'DarkBlue'
+        \}
     let g:todo_note_file = expand("%:t:r")."-note.txt"
     let g:todo_done_file = expand("%:t:r")."-done.txt"
     " Todo prompt
@@ -452,6 +458,7 @@
     nmap <leader>2 \tmn
     " Todo archive notes
     nmap <leader>3 \tan
+    nmap <leader>3 :call MakeNoteFile()<cr>
     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
 " ------------------------------------------------------------------------- "
 
