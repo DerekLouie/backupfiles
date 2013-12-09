@@ -31,6 +31,7 @@ alias tumx='tmux -2'
 
 alias tls='tmux list-sessions'
 alias ta='tmux attach-session -t'
+alias tn='tmux new -s '
 
 alias b='cd ~/backupfiles'
 alias bd='cd ~/backupfiles/Dotfiles'

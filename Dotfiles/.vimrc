@@ -51,31 +51,34 @@
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
     Bundle 'tsaleh/vim-matchit'
+    "Install Later""
     Bundle 'corntrace/bufexplorer'
-    Bundle 'mhinz/vim-startify'
-    Bundle 'sjl/clam.vim'
-    Bundle 'sjl/vitality.vim'
+    " Bundle 'mhinz/vim-startify'
+    " Bundle 'sjl/clam.vim'
+    " Bundle 'sjl/vitality.vim'
     Bundle 'sandeepcr529/Buffet.vim'
-    Bundle 'coderifous/textobj-word-column.vim'
-    Bundle 'troydm/pb.vim'
+    " Bundle 'coderifous/textobj-word-column.vim'
+    " Bundle 'troydm/pb.vim'
     Bundle 'troydm/easybuffer.vim'
-    Bundle 'kshenoy/vim-signature'
-    Bundle 'vim-scripts/YankRing.vim'
-    Bundle 'chrisbra/Recover.vim'
-    Bundle 'mihaifm/vimpanel'
-    Bundle 'goldfeld/vim-seek'
-    Bundle 'junegunn/vim-scroll-position'
-    Bundle 'justincampbell/vim-eighties.git'
-    Bundle 'mhinz/vim-signify'
-    Bundle 'sk1418/Join'
-    Bundle 'drmikehenry/vim-fixkey'
-    Bundle 'rhysd/clever-f.vim'
+    " Bundle 'kshenoy/vim-signature'
+    " Bundle 'vim-scripts/YankRing.vim'
+    " Bundle 'chrisbra/Recover.vim'
+    " Bundle 'mihaifm/vimpanel'
+    " Bundle 'goldfeld/vim-seek'
+    " Bundle 'junegunn/vim-scroll-position'
+    " Bundle 'justincampbell/vim-eighties.git'
+    " Bundle 'mhinz/vim-signify'
+    " Bundle 'sk1418/Join'
+    " Bundle 'drmikehenry/vim-fixkey'
+    " Bundle 'rhysd/clever-f.vim'
+    """
     " MAY CRASH IF USED WITH FUGITIVE
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
     Bundle 'sjl/gundo.vim'
     Bundle 'jeetsukumaran/vim-buffersaurus'
+    Bundle 'DerekLouie/LastBuf-Personal' 
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -247,6 +250,7 @@
     
     " :cnoreabbrev q CloseSession<bar>q
     " :cnoreabbrev wq CloseSession<bar>w<bar>q
+    :cnoreabbrev <silent> q! CloseSession<bar>q!
     :cnoreabbrev <silent> q CloseSession<bar>q
     :cnoreabbrev <silent> Q CloseSession<bar>q
     :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
@@ -504,6 +508,27 @@
 " Gundo
     nnoremap <leader>9 <esc>:GundoToggle<CR>
 " ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" lastbuf
+    ":LastBuf mapping is <c-w><c-z> by default.
+    "" You can remapping it by 
+    map <c-s-t> :LastBuf<CR>
+
+    " g:lastbuf_num option decides the max reopen buf number.
+    let g:lastbuf_num=30
+    "
+    " " this option decides to reopen which level of hided buffer.
+    " " :hid   bufhidden  (will always be reopened)
+    " " :bun   bufunload  (will be reopened if level >= 1)
+    " " :bd    bufdelete  (will be reopened if level >= 2)
+    " " :bw    bufwipeout (will never be reopened!CAUTION!!)
+    " " default is 1 , means :bd and :bw not be reopened.
+    " " if you want the same effect of 'nohidden'. 
+    " " set it to 0 and  set 'nohidden'
+    let g:lastbuf_level=2
+" ------------------------------------------------------------------------- "
+
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
