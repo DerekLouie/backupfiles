@@ -23,10 +23,12 @@ alias c="clear"
 
 alias tmux="TERM=screen-256color tmux"
 alias tumx='tmux -2'
-if [ -n "$TMUX" ]; then
+
+# if [ -n "$TMUX" ]; then
     # called inside tmux session, do tmux things
-    tmux source-file ~/.tmux.conf
-fi
+    # tmux source-file ~/.tmux.conf
+# fi
+
 alias tls='tmux list-sessions'
 alias ta='tmux attach-session -t'
 

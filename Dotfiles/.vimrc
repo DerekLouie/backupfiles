@@ -74,7 +74,8 @@
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
-    Bundle "sjl/gundo.vim"
+    Bundle 'sjl/gundo.vim'
+    Bundle 'jeetsukumaran/vim-buffersaurus'
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -258,11 +259,15 @@
     " :command Q q
 
     function! CloseSess()
-        :CloseSession
+        CloseSession
     endfunction
 
     function! MakeNoteFile()
         " Add stuff to this to put the line at the top of the file and :e
+    endfunction
+
+    function SwitchToLastBuffer()
+      b#
     endfunction
 
     " This doesn't work, kind of annoying
@@ -682,8 +687,9 @@
     " Create a new tab, enter filename
     map <leader>nt <esc>:ls<cr>:tabnew<Space>
 
+    nmap # :call SwitchToLastBuffer()<CR>
+    
     " Open a new tab with next file in the buffer loaded
-    " REMAP THIS
     nmap <leader><tab> <Esc>:tab sbnext<CR>
 
     " Open a new tab with no filename
