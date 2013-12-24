@@ -529,6 +529,27 @@
     let g:lastbuf_level=2
 " ------------------------------------------------------------------------- "
 
+" ------------------------------------------------------------------------- "
+" Silver searcher
+
+if executable('ag')
+
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  let g:ctrlp_use_caching = 0
+
+  let g:ackprg = 'ag --nogroup --nocolor --column'
+
+endif
+" ------------------------------------------------------------------------- "
+
+" ------------------------------------------------------------------------- "
+" Ack.vim
+" Make it not open in a new tab
+" Also make it keep focus
+
+" ------------------------------------------------------------------------- "
+
 " Mappings
     " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
     " :help key-notation
