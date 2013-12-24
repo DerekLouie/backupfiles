@@ -11,4 +11,8 @@
 [difftool]
 	prompt = false
 [alias]
-	d = difftool
+    d = difftool
+[merge]
+    tool = vimdiff
+[branch "master"]
+      remote = origin
