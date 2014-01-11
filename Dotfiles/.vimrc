@@ -14,52 +14,54 @@
     Bundle 'majutsushi/tagbar'
     Bundle 'kien/ctrlp.vim'
     Bundle 'docunext/closetag.vim'
-    " Bundle 'kevinw/pyflakes-vim'
     Bundle 'scrooloose/nerdcommenter'
     Bundle 'ervandew/supertab'
     Bundle 'vim-scripts/CmdlineComplete'
     Bundle 'tpope/vim-surround'
     Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
-    Bundle 'bling/vim-airline'
     Bundle 'mileszs/ack.vim'
     Bundle 'scrooloose/syntastic'
     Bundle 'nanotech/jellybeans.vim'
-    Bundle 'kchmck/vim-coffee-script'
     Bundle 'gregsexton/MatchTag'
     Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'mileszs/ack.vim'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-notes'
     Bundle 'tpope/vim-fugitive'
     Bundle 'DerekLouie/vimTodoWithNotes'
-    " Bundle 'mivok/vimtodo'
     " Must have NPM and a ruby gem
     Bundle 'suan/vim-instant-markdown'
     " Must install tmux
-    " Bundle 'ervandew/screen'
     Bundle 'benmills/vimux'
-    " For Tmux Nav
     Bundle 'christoomey/vim-tmux-navigator'
     Bundle 'xolox/vim-session'
-    " Bundle 'Raimondi/delimitMate'
-    " Bundle 'Lokaltog/powerline-fonts'
-    " Bundle 'Lokaltog/vim-powerline'
     Bundle 'MarcWeber/vim-addon-mw-utils'
     Bundle 'tomtom/tlib_vim'
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
     Bundle 'tsaleh/vim-matchit'
-    "Install Later""
     Bundle 'corntrace/bufexplorer'
+    Bundle 'sandeepcr529/Buffet.vim'
+    Bundle 'troydm/easybuffer.vim'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'jeetsukumaran/vim-buffersaurus'
+    Bundle 'DerekLouie/LastBuf-Personal'
+    Bundle 'vim-scripts/mru.vim'
+    "Install Later""
+    " Bundle 'kevinw/pyflakes-vim'
+    " Bundle 'bling/vim-airline'
+    " Bundle 'kchmck/vim-coffee-script'
+    " Bundle 'mivok/vimtodo'
+    " Bundle 'ervandew/screen'
+    " Bundle 'Raimondi/delimitMate'
+    " Bundle 'Lokaltog/powerline-fonts'
+    " Bundle 'Lokaltog/vim-powerline'
     " Bundle 'mhinz/vim-startify'
     " Bundle 'sjl/clam.vim'
     " Bundle 'sjl/vitality.vim'
-    Bundle 'sandeepcr529/Buffet.vim'
     " Bundle 'coderifous/textobj-word-column.vim'
     " Bundle 'troydm/pb.vim'
-    Bundle 'troydm/easybuffer.vim'
     " Bundle 'kshenoy/vim-signature'
     " Bundle 'vim-scripts/YankRing.vim'
     " Bundle 'chrisbra/Recover.vim'
@@ -76,10 +78,6 @@
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'jeetsukumaran/vim-buffersaurus'
-    Bundle 'DerekLouie/LastBuf-Personal' 
-    Bundle 'vim-scripts/mru.vim'
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -126,15 +124,13 @@
     set wrap                                                " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
-
     set exrc                                                " enable per-directory .vimrc files
-
     set secure                                              " disable unsafe commands in local .vimrc files
 
      " Set map leader
     let mapleader = "\<Space>"
 
-     "test if vimrc is being sourced
+     "Test if vimrc is being sourced
      nmap <leader>9 :echo expand('%:p:h').""<cr>
 
      " Make background in vim same transparency as terminal
@@ -188,6 +184,7 @@
      " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
      " map <leader>1 :echo expand('%:p:h').""<cr>
      " let &runtimepath.=','.escape("~/backupfiles/syntax",'\,')
+
      "Make current line's number bold
          set cursorline
          " hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
@@ -223,44 +220,18 @@
      autocmd BufWrite *.py :call DeleteTrailingWS()
      autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-     " OS LEVEL HACKS
-     " LEFT COMMAND MAPPED TO CTRL
-     " CAPSLOCK MAPPED TO EXC
- " ------------------------------------------------------------------------- "
-
- " ------------------------------------------------------------------------- "
- " Functions, autocmd, control blocks
-     try                                                     " Specify the behavior when switching between buffers
-           set switchbuf=useopen,usetab,newtab
-             set stal=2
-         catch
-     endtry
-
-     if has("autocmd")                                       " Return to last edit position when opening files
-       au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-     endif
-
-     func! DeleteTrailingWS()                                " Delete trailing white space on save, useful for Python and CoffeeScript
-           exe "normal mz"
-             %s/\s\+$//ge
-               exe "normal `z"
-           endfunc
-
-     autocmd BufWrite *.py :call DeleteTrailingWS()
-     autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
      " setting the working directory to the current file's directory:
-     " autocmd BufEnter * lcd %:p:h  
+     autocmd BufEnter * lcd %:p:h
 
      " returns true iff is NERDTree open/active
-     function! IsNTOpen()        
+     function! IsNTOpen()
          return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
      endfunction
 
      " returns true iff focused window is NERDTree window
-     function! IsNTFocused()     
-         return -1 != match(expand('%'), 'NERD_Tree') 
-     endfunction 
+     function! IsNTFocused()
+         return -1 != match(expand('%'), 'NERD_Tree')
+     endfunction
 
      " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
      function! NCSyncTree()
@@ -272,22 +243,22 @@
          endif
      endfunction
 
-     autocmd BufWinEnter * call NCSyncTree()
+     " autocmd BufWinEnter * call NCSyncTree()
 
 
      " :cnoreabbrev q CloseSession<bar>q
      " :cnoreabbrev wq CloseSession<bar>w<bar>q
-     :cnoreabbrev <silent> q! CloseSession<bar>q!
-     :cnoreabbrev <silent> q CloseSession<bar>q
-     :cnoreabbrev <silent> Q CloseSession<bar>q
-     :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
-     :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
-    
+     " :cnoreabbrev <silent> q! CloseSession<bar>q!
+     " :cnoreabbrev <silent> q CloseSession<bar>q
+     " :cnoreabbrev <silent> Q CloseSession<bar>q
+     " :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
+     " :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
+
      " exit with capitols
-     " :command WQ wq
-     " :command Wq wq
-     " :command W w
-     " :command Q q
+     :command WQ wq
+     :command Wq wq
+     :command W w
+     :command Q q
 
      function! CloseSess()
          CloseSession
@@ -369,12 +340,6 @@
      let g:EasyMotion_leader_key = "\\"
      " let g:EasyMotion_leader_key = "'"
 
-     " Activate Easymotion
-     " nmap ' \w
-     nmap ' \W
-     nmap " \B
-     vmap ' \W
-     vmap " \B
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -479,23 +444,11 @@
          \'CANCELLED': 'Red',
          \'TODO': 'Red',
          \'NOTE': 'Blue',
-         \'NOTES': 'DarkMagenta', 
+         \'NOTES': 'DarkMagenta',
          \'TASKS': 'DarkBlue'
          \}
      let g:todo_note_file = expand("%:t:r")."-note.txt"
      let g:todo_done_file = expand("%:t:r")."-done.txt"
-     " Todo prompt
-     nmap <leader>c \tp
-     " Todo finish
-     nmap <leader>f \tns
-     " Todo move done
-     nmap <leader>1 \tad
-     " Todo move notes
-     nmap <leader>2 \tmn
-     " Todo archive notes
-     nmap <leader>3 \tan
-     nmap <leader>3 :call MakeNoteFile()<cr>
-     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -508,12 +461,10 @@
      let g:session_default_overwrite = 0
      let g:session_extension = ".vim"
 
-     " Open Session
-     noremap <C-o> <esc>:OpenSession<Space><C-d>
-   
+
      " Make sure when you quit and you open a new vim the files are not kept
      " open
-    
+
      " autocmd VimEnter * :silent CloseSession
 
      " function! TearItDown()
@@ -521,7 +472,7 @@
      " endfunction
 
      " au VimLeave * silent call TearItDown()
-        
+
 
  " ------------------------------------------------------------------------- "
 
@@ -557,6 +508,32 @@ endif
     " :help daw
     " :Listmaps
     " :verbose map! <C-Q>
+
+
+     " Open Session
+     noremap <C-o> <esc>:OpenSession<Space><C-d>
+
+     " Todo prompt
+     nmap <leader>c \tp
+     " Todo finish
+     nmap <leader>f \tns
+     " Todo move done
+     nmap <leader>1 \tad
+     " Todo move notes
+     nmap <leader>2 \tmn
+     " Todo archive notes
+     nmap <leader>3 \tan
+     nmap <leader>3 :call MakeNoteFile()<cr>
+     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
+
+     " Activate Easymotion
+     " nmap ' \w
+     nmap ' \W
+     nmap " \B
+     vmap ' \W
+     vmap " \B
+
+
  " ------------------------------------------------------------------------- "
  " Vimux
      nmap <leader>0 <esc>:call VimuxOpenPane()<cr>
@@ -571,7 +548,7 @@ endif
  " ------------------------------------------------------------------------- "
  " lastbuf
      ":LastBuf mapping is <c-w><c-z> by default.
-     "" You can remapping it by 
+     "" You can remapping it by
      map <c-s-t> :LastBuf<CR>
 
      " g:lastbuf_num option decides the max reopen buf number.
@@ -583,18 +560,22 @@ endif
      " " :bd    bufdelete  (will be reopened if level >= 2)
      " " :bw    bufwipeout (will never be reopened!CAUTION!!)
      " " default is 1 , means :bd and :bw not be reopened.
-     " " if you want the same effect of 'nohidden'. 
+     " " if you want the same effect of 'nohidden'.
      " " set it to 0 and  set 'nohidden'
      let g:lastbuf_level=2
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
  " MRU
-     let MRU_Max_Entries = 1000 
-     let MRU_File = '~/.vim/sessions/MRU' 
+     let MRU_Max_Entries = 1000
+     let MRU_File = '~/.vim/sessions/MRU'
      let MRU_Auto_Close = 0
  " ------------------------------------------------------------------------- "
 
+ " ------------------------------------------------------------------------- "
+ " NERDTree
+    let NERDTreeQuitOnOpen=1
+ " ------------------------------------------------------------------------- "
 
  " Mappings
      " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
@@ -712,7 +693,7 @@ endif
 
      " Insert new line after current one
      nmap <leader><cr> <esc>:pu_<cr>
-    
+
      " ------------------------------------------------------------------------- "
      " Split Navigation
          nmap <C-w>- <esc>:vertical resize -5<cr>
@@ -728,7 +709,7 @@ endif
         " noremap   <Right>  <NOP>
         " noremap   <Del>  <NOP>
         " inoremap   <Del>  <NOP>
-        
+
      " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ →
          noremap <C-H> <C-W>h
          noremap <C-J> <C-W>j
@@ -792,7 +773,7 @@ endif
      map <leader>nt <esc>:ls<cr>:tabnew<Space>
 
      nmap # :call SwitchToLastBuffer()<CR>
-    
+
      " Open a new tab with next file in the buffer loaded
      nmap <leader><tab> <Esc>:tab sbnext<CR>
 
