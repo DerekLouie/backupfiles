@@ -61,7 +61,7 @@
     " Bundle 'coderifous/textobj-word-column.vim'
     " Bundle 'troydm/pb.vim'
     Bundle 'troydm/easybuffer.vim'
-    " Bundle 'kshenoy/vim-signature'
+    Bundle 'kshenoy/vim-signature'
     " Bundle 'vim-scripts/YankRing.vim'
     " Bundle 'chrisbra/Recover.vim'
     " Bundle 'mihaifm/vimpanel'
