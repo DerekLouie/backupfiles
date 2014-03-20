@@ -49,14 +49,6 @@
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
     Bundle 'tmhedberg/matchit'
-    Bundle 'corntrace/bufexplorer'
-    Bundle 'sandeepcr529/Buffet.vim'
-    Bundle 'troydm/easybuffer.vim'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'jeetsukumaran/vim-buffersaurus'
-    Bundle 'DerekLouie/LastBuf-Personal'
-    Bundle 'vim-scripts/mru.vim'
-    Bundle 'pangloss/vim-javascript'
     "Install Later""
     Bundle 'corntrace/bufexplorer'
     " Bundle 'mhinz/vim-startify'
@@ -851,7 +843,7 @@ endif
      nmap \\ <esc>:%s/\s\+$//e<CR>
 
      " Make entire file of single lines a comma separated list
-     " nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
+     nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
 
      " joining lines
      " noremap ,j :join<cr>
