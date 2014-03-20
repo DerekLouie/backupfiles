@@ -48,6 +48,7 @@
     Bundle 'jeetsukumaran/vim-buffersaurus'
     Bundle 'DerekLouie/LastBuf-Personal'
     Bundle 'vim-scripts/mru.vim'
+    Bundle 'pangloss/vim-javascript'
     "Install Later""
     " Bundle 'kevinw/pyflakes-vim'
     " Bundle 'bling/vim-airline'
@@ -268,7 +269,7 @@
          " Add stuff to this to put the line at the top of the file and :e
      endfunction
 
-     function SwitchToLastBuffer()
+     function! SwitchToLastBuffer()
        b#
      endfunction
 

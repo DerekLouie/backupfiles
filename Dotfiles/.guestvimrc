@@ -29,7 +29,6 @@
     Bundle 'kchmck/vim-coffee-script'
     Bundle 'gregsexton/MatchTag'
     Bundle 'Lokaltog/vim-easymotion'
-    Bundle 'mileszs/ack.vim'
     Bundle 'airblade/vim-gitgutter'
     Bundle 'xolox/vim-misc'
     Bundle 'xolox/vim-notes'
@@ -79,8 +78,12 @@
     " Bundle 'sjl/splice.vim'
     Bundle 'sjl/gundo.vim'
     Bundle 'jeetsukumaran/vim-buffersaurus'
-    Bundle 'DerekLouie/LastBuf-Personal' 
+    Bundle 'DerekLouie/LastBuf-Personal'
     Bundle 'vim-scripts/mru.vim'
+    Bundle 'pangloss/vim-javascript'
+    Bundle 'tpope/vim-haml'
+    Bundle 'AndrewRadev/linediff.vim'
+    Bundle 'mattn/emmet-vim'
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -131,6 +134,7 @@
     set exrc                                                " enable per-directory .vimrc files
 
     set secure                                              " disable unsafe commands in local .vimrc files
+
 
      " Set map leader
     let mapleader = "\<Space>"
@@ -200,34 +204,9 @@
          augroup CLNRSet
              autocmd! ColorScheme * hi CursorLineNR cterm=bold
          augroup END
-
+    hi CursorLine   cterm=NONE ctermbg=gray ctermfg=black
  " ------------------------------------------------------------------------- "
 
- " ------------------------------------------------------------------------- "
- " Functions, autocmd, control blocks
-     try                                                     " Specify the behavior when switching between buffers
-           set switchbuf=useopen,usetab,newtab
-             set stal=2
-         catch
-     endtry
-
-     if has("autocmd")                                       " Return to last edit position when opening files
-       au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-     endif
-
-     func! DeleteTrailingWS()                                " Delete trailing white space on save, useful for Python and CoffeeScript
-           exe "normal mz"
-             %s/\s\+$//ge
-               exe "normal `z"
-           endfunc
-
-     autocmd BufWrite *.py :call DeleteTrailingWS()
-     autocmd BufWrite *.coffee :call DeleteTrailingWS()
-
-     " OS LEVEL HACKS
-     " LEFT COMMAND MAPPED TO CTRL
-     " CAPSLOCK MAPPED TO EXC
- " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
  " Functions, autocmd, control blocks
@@ -251,17 +230,17 @@
      autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
      " setting the working directory to the current file's directory:
-     " autocmd BufEnter * lcd %:p:h  
+     " autocmd BufEnter * lcd %:p:h
 
      " returns true iff is NERDTree open/active
-     function! IsNTOpen()        
+     function! IsNTOpen()
          return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
      endfunction
 
      " returns true iff focused window is NERDTree window
-     function! IsNTFocused()     
-         return -1 != match(expand('%'), 'NERD_Tree') 
-     endfunction 
+     function! IsNTFocused()
+         return -1 != match(expand('%'), 'NERD_Tree')
+     endfunction
 
      " calls NERDTreeFind iff NERDTree is active, current window contains a modifiable file, and we're not in vimdiff
      function! NCSyncTree()
@@ -275,15 +254,33 @@
 
      autocmd BufWinEnter * call NCSyncTree()
 
+     function! ToggleSyncTree()
+         let ntOpen = nerdtree#isTreeOpen()
+         let ntFocused = IsNTFocused()
+         if &modifiable && !ntOpen && strlen(expand('%')) > 0 && !&diff
+             NERDTreeFind
+             wincmd p
+         endif
+         " if nt is open and not focused then toggle
+         if &modifiable && ntOpen && !ntFocused && strlen(expand('%')) > 0 && !&diff
+             NERDTreeToggle
+             wincmd p
+         endif
+     endfunction
 
      " :cnoreabbrev q CloseSession<bar>q
      " :cnoreabbrev wq CloseSession<bar>w<bar>q
-     :cnoreabbrev <silent> q! CloseSession<bar>q!
-     :cnoreabbrev <silent> q CloseSession<bar>q
-     :cnoreabbrev <silent> Q CloseSession<bar>q
-     :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
-     :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
-    
+     " USED:
+     " :cnoreabbrev <silent> q! CloseSession<bar>q!
+     " :cnoreabbrev <silent> q CloseSession<bar>q
+     " :cnoreabbrev <silent> Q CloseSession<bar>q
+     " :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
+     " :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
+     
+     :cnoreabbrev <silent> Q q
+     :cnoreabbrev <silent> wq wa<bar>q
+     :cnoreabbrev <silent> WQ wa<bar>q
+     
      " exit with capitols
      " :command WQ wq
      " :command Wq wq
@@ -478,7 +475,7 @@
          \'CANCELLED': 'Red',
          \'TODO': 'Red',
          \'NOTE': 'Blue',
-         \'NOTES': 'DarkMagenta', 
+         \'NOTES': 'DarkMagenta',
          \'TASKS': 'DarkBlue'
          \}
      let g:todo_note_file = expand("%:t:r")."-note.txt"
@@ -509,10 +506,10 @@
 
      " Open Session
      noremap <C-o> <esc>:OpenSession<Space><C-d>
-   
+
      " Make sure when you quit and you open a new vim the files are not kept
      " open
-    
+
      " autocmd VimEnter * :silent CloseSession
 
      " function! TearItDown()
@@ -520,7 +517,7 @@
      " endfunction
 
      " au VimLeave * silent call TearItDown()
-        
+
 
  " ------------------------------------------------------------------------- "
 
@@ -538,7 +535,7 @@
  " ------------------------------------------------------------------------- "
  " lastbuf
      ":LastBuf mapping is <c-w><c-z> by default.
-     "" You can remapping it by 
+     "" You can remapping it by
      map <c-s-t> :LastBuf<CR>
 
      " g:lastbuf_num option decides the max reopen buf number.
@@ -550,17 +547,19 @@
      " " :bd    bufdelete  (will be reopened if level >= 2)
      " " :bw    bufwipeout (will never be reopened!CAUTION!!)
      " " default is 1 , means :bd and :bw not be reopened.
-     " " if you want the same effect of 'nohidden'. 
+     " " if you want the same effect of 'nohidden'.
      " " set it to 0 and  set 'nohidden'
      let g:lastbuf_level=2
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
  " MRU
-     let MRU_Max_Entries = 1000 
+     let MRU_Max_Entries = 1000
      " silent !touch ~/.vim/sessions/MRU > /dev/null 2>&1
-     " let MRU_File = '$HOME/.vim/sessions/MRU' 
-     let MRU_Auto_Close = 0
+     " let MRU_File = '~/.vim/sessions/MRU'
+     " MRU does not close after you open a file (want to make this
+     " functionality work with the vimgrep stuff)
+     " let MRU_Auto_Close = 0
     map <c-i> <esc>:MRU<cr>
  " ------------------------------------------------------------------------- "
 
@@ -581,6 +580,7 @@
      " map <C-y> <C-R> "Ctrl + Y = redo
 
      " Ctrl + n = Toggle NERDTree"
+     map <C-n> <ESC>:call<space>ToggleSyncTree()<CR>
      " map <C-n> <ESC>:NERDTreeToggle<CR>
 
      " Ctrl + t = Toggle TagBar
@@ -590,7 +590,7 @@
      map <leader><Space> <plug>NERDCommenterToggle
 
      " Space+t is to align by character entered after command
-     " map <leader>t :Tabularize /
+     map <leader>t :Tabularize /
 
      " Toggle on and off highlight during search
      " map <leader>h :set hlsearch!<CR>
@@ -658,7 +658,7 @@
        \gV:call setreg('"', old_reg, old_regtype)<CR>
 
      " Switch Current Working Directory to the directory of the open buffer
-     " map <leader>cd :cd %:p:h<cr>:pwd<cr>
+     map <leader>cd :cd %:p:h<cr>:pwd<cr><esc>:call<space>NCSyncTree()<cr>
 
      " Move a line of text using shift+[j/k] on mac
      " nmap <S-Down> mz:m+<cr>`z
@@ -681,7 +681,7 @@
 
      " Insert new line after current one
      " nmap <leader><cr> <esc>:pu_<cr>
-    
+
      " ------------------------------------------------------------------------- "
      " Split Navigation
          " nmap <C-w>- <esc>:vertical resize -5<cr>
@@ -696,7 +696,7 @@
         " noremap   <Right>  <NOP>
         " noremap   <Del>  <NOP>
         " inoremap   <Del>  <NOP>
-        
+
      " Ctrl + [h, j, k, l] = Move to split ← ↓ ↑ →
          noremap <C-H> <C-W>h
          noremap <C-J> <C-W>j
@@ -714,7 +714,9 @@
      " ------------------------------------------------------------------------- "
      " Buffer Navigation
          " Switch to buffer from the list
-         map <leader>ls <esc>:ls<CR>:b<Space>
+         " map <leader>ls <esc>:ls<CR>:b<Space>
+         map <leader>ls <esc>:EasyBuffer<CR>
+
 
          " Q closes the current buffer
          map Q <esc>:bd<cr>
@@ -760,7 +762,7 @@
      " map <leader>nt <esc>:ls<cr>:tabnew<Space>
 
      nmap # :call SwitchToLastBuffer()<CR>
-    
+
      " Open a new tab with next file in the buffer loaded
      " nmap <leader><tab> <Esc>:tab sbnext<CR>
 
@@ -780,7 +782,7 @@
      " noremap <S-Tab> <esc>:tabp<cr>
 
      " Clear all trailing spaces
-     " nmap \\ <esc>:%s/\s\+$//e<CR>
+     nmap \\ <esc>:%s/\s\+$//e<CR>
 
      " Make entire file of single lines a comma separated list
      " nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
