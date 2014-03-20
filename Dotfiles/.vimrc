@@ -40,7 +40,7 @@
     Bundle 'tomtom/tlib_vim'
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
-    Bundle 'tsaleh/vim-matchit'
+    Bundle 'tmhedberg/matchit'
     Bundle 'corntrace/bufexplorer'
     Bundle 'sandeepcr529/Buffet.vim'
     Bundle 'troydm/easybuffer.vim'
@@ -222,7 +222,7 @@
      autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
      " setting the working directory to the current file's directory:
-     autocmd BufEnter * lcd %:p:h
+     " autocmd BufEnter * lcd %:p:h  
 
      " returns true iff is NERDTree open/active
      function! IsNTOpen()
@@ -244,22 +244,22 @@
          endif
      endfunction
 
-     " autocmd BufWinEnter * call NCSyncTree()
+     autocmd BufWinEnter * call NCSyncTree()
 
 
      " :cnoreabbrev q CloseSession<bar>q
      " :cnoreabbrev wq CloseSession<bar>w<bar>q
-     " :cnoreabbrev <silent> q! CloseSession<bar>q!
-     " :cnoreabbrev <silent> q CloseSession<bar>q
-     " :cnoreabbrev <silent> Q CloseSession<bar>q
-     " :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
-     " :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
-
+     :cnoreabbrev <silent> q! CloseSession<bar>q!
+     :cnoreabbrev <silent> q CloseSession<bar>q
+     :cnoreabbrev <silent> Q CloseSession<bar>q
+     :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
+     :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
+    
      " exit with capitols
-     :command WQ wq
-     :command Wq wq
-     :command W w
-     :command Q q
+     " :command WQ wq
+     " :command Wq wq
+     " :command W w
+     " :command Q q
 
      function! CloseSess()
          CloseSession
@@ -461,6 +461,7 @@
      let g:session_default_name = expand("%:t:r")."-session"
      let g:session_default_overwrite = 0
      let g:session_extension = ".vim"
+     let g:session_autoload = "no"
 
 
      " Make sure when you quit and you open a new vim the files are not kept
@@ -569,7 +570,7 @@ endif
  " ------------------------------------------------------------------------- "
  " MRU
      let MRU_Max_Entries = 1000
-     let MRU_File = '~/.vim/sessions/MRU'
+     " let MRU_File = '~/.vim/sessions/MRU'
      let MRU_Auto_Close = 0
  " ------------------------------------------------------------------------- "
 

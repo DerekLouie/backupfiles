@@ -1,3 +1,4 @@
+alias g="git status"
 # git unpushed commits
 alias guc="git log origin/master..HEAD"
 # Git add with hunk verification
