@@ -50,7 +50,15 @@
     Bundle 'tomtom/tlib_vim'
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
-    Bundle 'tsaleh/vim-matchit'
+    Bundle 'tmhedberg/matchit'
+    Bundle 'corntrace/bufexplorer'
+    Bundle 'sandeepcr529/Buffet.vim'
+    Bundle 'troydm/easybuffer.vim'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'jeetsukumaran/vim-buffersaurus'
+    Bundle 'DerekLouie/LastBuf-Personal'
+    Bundle 'vim-scripts/mru.vim'
+    Bundle 'pangloss/vim-javascript'
     "Install Later""
     Bundle 'corntrace/bufexplorer'
     " Bundle 'mhinz/vim-startify'
@@ -130,16 +138,13 @@
     set wrap                                                " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
-
     set exrc                                                " enable per-directory .vimrc files
-
     set secure                                              " disable unsafe commands in local .vimrc files
-
 
      " Set map leader
     let mapleader = "\<Space>"
 
-     "test if vimrc is being sourced
+     "Test if vimrc is being sourced
      nmap <leader>9 :echo expand('%:p:h').""<cr>
 
      " Make background in vim same transparency as terminal
@@ -206,7 +211,6 @@
          augroup END
     hi CursorLine   cterm=NONE ctermbg=gray ctermfg=black
  " ------------------------------------------------------------------------- "
-
 
  " ------------------------------------------------------------------------- "
  " Functions, autocmd, control blocks
@@ -503,6 +507,7 @@
      let g:session_default_name = expand("%:t:r")."-session"
      let g:session_default_overwrite = 0
      let g:session_extension = ".vim"
+     let g:session_autoload = "no"
 
      " Open Session
      noremap <C-o> <esc>:OpenSession<Space><C-d>
@@ -563,6 +568,10 @@
     map <c-i> <esc>:MRU<cr>
  " ------------------------------------------------------------------------- "
 
+ " ------------------------------------------------------------------------- "
+ " NERDTree
+    let NERDTreeQuitOnOpen=1
+ " ------------------------------------------------------------------------- "
 
  " Mappings
      " FOR MAPPINGS: http://hea-www.harvard.edu/~fine/Tech/vi.html
@@ -661,10 +670,10 @@
      map <leader>cd :cd %:p:h<cr>:pwd<cr><esc>:call<space>NCSyncTree()<cr>
 
      " Move a line of text using shift+[j/k] on mac
-     " nmap <S-Down> mz:m+<cr>`z
-     " nmap <S-Up> mz:m-2<cr>`z
-     " vmap <S-Down> :m'>+<cr>`<my`>mzgv`yo`z
-     " vmap <S-Up> :m'<-2<cr>`>my`<mzgv`yo`z
+     nmap <S-Down> mz:m+<cr>`z
+     nmap <S-Up> mz:m-2<cr>`z
+     vmap <S-Down> :m'>+<cr>`<my`>mzgv`yo`z
+     vmap <S-Up> :m'<-2<cr>`>my`<mzgv`yo`z
 
      " Remove the Windows ^M - when the encodings gets messed up
      noremap <Leader>mm mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
@@ -673,7 +682,7 @@
      map <leader>pp :setlocal paste!<cr>
 
      " Browse Old files
-     " map <leader>op :bro ol<cr>
+     map <leader>op :bro ol<cr>
      " map <leader>oo :CtrlPMRU<cr>
 
      " Ctrlp version of browsing old files (M.ost R.ecently U.sed)
@@ -684,8 +693,9 @@
 
      " ------------------------------------------------------------------------- "
      " Split Navigation
-         " nmap <C-w>- <esc>:vertical resize -5<cr>
-         " nmap <C-w>= <esc>:vertical resize +5<cr>
+         nmap <C-w>- <esc>:vertical resize -5<cr>
+         nmap <C-w>= <esc>:vertical resize +5<cr>
+
         " inoremap  <Up>     <NOP>
         " inoremap  <Down>   <NOP>
         " inoremap  <Left>   <NOP>
