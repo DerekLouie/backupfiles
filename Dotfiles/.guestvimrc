@@ -510,7 +510,7 @@
      let g:session_autoload = "no"
 
      " Open Session
-     noremap <C-o> <esc>:OpenSession<Space><C-d>
+     " noremap <C-o> <esc>:OpenSession<Space><C-d>
 
      " Make sure when you quit and you open a new vim the files are not kept
      " open
@@ -565,7 +565,7 @@
      " MRU does not close after you open a file (want to make this
      " functionality work with the vimgrep stuff)
      " let MRU_Auto_Close = 0
-    map <c-i> <esc>:MRU<cr>
+    nnoremap <TAB> <esc>:MRU<cr>
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
