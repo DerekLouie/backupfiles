@@ -39,7 +39,7 @@ alias bd='cd ~/backupfiles/Dotfiles'
 alias bt='cd ~/backupfiles/Todo'
 
 function serve {
-  port="${1:-9090}"jj
+  port="${1:-9090}"
   ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
 }
 

@@ -60,14 +60,11 @@
     Bundle 'vim-scripts/mru.vim'
     Bundle 'pangloss/vim-javascript'
     "Install Later""
-    Bundle 'corntrace/bufexplorer'
     " Bundle 'mhinz/vim-startify'
     " Bundle 'sjl/clam.vim'
     " Bundle 'sjl/vitality.vim'
-    Bundle 'sandeepcr529/Buffet.vim'
     " Bundle 'coderifous/textobj-word-column.vim'
     " Bundle 'troydm/pb.vim'
-    Bundle 'troydm/easybuffer.vim'
     Bundle 'kshenoy/vim-signature'
     " Bundle 'vim-scripts/YankRing.vim'
     " Bundle 'chrisbra/Recover.vim'
@@ -84,14 +81,11 @@
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'jeetsukumaran/vim-buffersaurus'
-    Bundle 'DerekLouie/LastBuf-Personal'
-    Bundle 'vim-scripts/mru.vim'
-    Bundle 'pangloss/vim-javascript'
     Bundle 'tpope/vim-haml'
     Bundle 'AndrewRadev/linediff.vim'
     Bundle 'mattn/emmet-vim'
+    Bundle 'tommcdo/vim-exchange'
+
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -541,7 +535,7 @@
  " lastbuf
      ":LastBuf mapping is <c-w><c-z> by default.
      "" You can remapping it by
-     map <c-s-t> :LastBuf<CR>
+     nnoremap <c-s-t> :LastBuf<CR>
 
      " g:lastbuf_num option decides the max reopen buf number.
      let g:lastbuf_num=30
@@ -565,7 +559,7 @@
      " MRU does not close after you open a file (want to make this
      " functionality work with the vimgrep stuff)
      " let MRU_Auto_Close = 0
-    nnoremap <TAB> <esc>:MRU<cr>
+     nnoremap <TAB> <esc>:MRU<cr>
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -611,16 +605,13 @@
      " map <leader>dd diwi<Space><Esc>
 
      " Fast source vimrc
-     map <leader>s <Esc>:source $MYVIMRC<CR>
+     nnoremap <leader>s <Esc>:source $MYVIMRC<CR>
 
      " Fast saving
      nnoremap <leader>w :w<CR>
 
      " Ignore compiled files
      set wildignore=*.o,*~,*.pyc
-
-     " Ignore case when searching
-     set ignorecase
 
      " When searching try to be smart about cases
      " set smartcase
@@ -729,10 +720,10 @@
 
 
          " Q closes the current buffer
-         map Q <esc>:bd<cr>
+         nnoremap Q <esc>:bd<cr>
 
          " Q! force closes the current buffer
-         map Q! <esc>:bd!<cr>
+         nnoremap Q! <esc>:bd!<cr>
 
          " Close buffer number(s) [use this notation with buffers :1,3bd]
          " map <leader>cb <esc>:ls<CR>:bd<left><left>
@@ -742,8 +733,8 @@
          " map <S-o> :e<space>
 
          " Navigate to different buffers
-         map <S-Right> <esc>:bnext<cr>
-         map <S-Left> <esc>:bprevious<cr>
+         nnoremap <S-Right> <esc>:bnext<cr>
+         nnoremap <S-Left> <esc>:bprevious<cr>
      " ------------------------------------------------------------------------- "
 
      " ------------------------------------------------------------------------- "
@@ -799,7 +790,12 @@
 
      " joining lines
      " noremap ,j :join<cr>
-
+     "
+     let g:ackprg="ack -H --nocolor --nogroup --column"
+     autocmd QuickFixCmdPost *grep* cwindow
+     set shortmess=aoOTI
+     let g:syntastic_javascript_jshint_conf = '~/Workspace/storm/conf/jshintrc'
+     " silent Ggrep! "mbController"
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
