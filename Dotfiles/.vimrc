@@ -20,9 +20,11 @@
     Bundle 'tpope/vim-surround'
     Bundle 'vim-scripts/listmaps.vim'
     Bundle 'godlygeek/tabular'
+    Bundle 'bling/vim-airline'
     Bundle 'mileszs/ack.vim'
     Bundle 'scrooloose/syntastic'
     Bundle 'nanotech/jellybeans.vim'
+    Bundle 'kchmck/vim-coffee-script'
     Bundle 'gregsexton/MatchTag'
     Bundle 'Lokaltog/vim-easymotion'
     Bundle 'airblade/vim-gitgutter'
@@ -30,39 +32,33 @@
     Bundle 'xolox/vim-notes'
     Bundle 'tpope/vim-fugitive'
     Bundle 'DerekLouie/vimTodoWithNotes'
+    " Bundle 'mivok/vimtodo'
     " Must have NPM and a ruby gem
     Bundle 'suan/vim-instant-markdown'
     " Must install tmux
+    " Bundle 'ervandew/screen'
     Bundle 'benmills/vimux'
+    " For Tmux Nav
     Bundle 'christoomey/vim-tmux-navigator'
     Bundle 'xolox/vim-session'
+    " Bundle 'Raimondi/delimitMate'
+    " Bundle 'Lokaltog/powerline-fonts'
+    " Bundle 'Lokaltog/vim-powerline'
     Bundle 'MarcWeber/vim-addon-mw-utils'
     Bundle 'tomtom/tlib_vim'
     Bundle 'garbas/vim-snipmate'
     Bundle 'honza/vim-snippets'
-    Bundle 'tsaleh/vim-matchit'
-    Bundle 'corntrace/bufexplorer'
-    Bundle 'sandeepcr529/Buffet.vim'
-    Bundle 'troydm/easybuffer.vim'
-    Bundle 'sjl/gundo.vim'
-    Bundle 'jeetsukumaran/vim-buffersaurus'
-    Bundle 'DerekLouie/LastBuf-Personal'
-    Bundle 'vim-scripts/mru.vim'
+    Bundle 'tmhedberg/matchit'
     "Install Later""
-    " Bundle 'kevinw/pyflakes-vim'
-    " Bundle 'bling/vim-airline'
-    " Bundle 'kchmck/vim-coffee-script'
-    " Bundle 'mivok/vimtodo'
-    " Bundle 'ervandew/screen'
-    " Bundle 'Raimondi/delimitMate'
-    " Bundle 'Lokaltog/powerline-fonts'
-    " Bundle 'Lokaltog/vim-powerline'
+    Bundle 'corntrace/bufexplorer'
     " Bundle 'mhinz/vim-startify'
     " Bundle 'sjl/clam.vim'
     " Bundle 'sjl/vitality.vim'
+    Bundle 'sandeepcr529/Buffet.vim'
     " Bundle 'coderifous/textobj-word-column.vim'
     " Bundle 'troydm/pb.vim'
-    " Bundle 'kshenoy/vim-signature'
+    Bundle 'troydm/easybuffer.vim'
+    Bundle 'kshenoy/vim-signature'
     " Bundle 'vim-scripts/YankRing.vim'
     " Bundle 'chrisbra/Recover.vim'
     " Bundle 'mihaifm/vimpanel'
@@ -78,6 +74,14 @@
     " Need to do some stuff with git-config to get working
     " http://sjl.bitbucket.org/splice.vim/#installation
     " Bundle 'sjl/splice.vim'
+    Bundle 'sjl/gundo.vim'
+    Bundle 'jeetsukumaran/vim-buffersaurus'
+    Bundle 'DerekLouie/LastBuf-Personal'
+    Bundle 'vim-scripts/mru.vim'
+    Bundle 'pangloss/vim-javascript'
+    Bundle 'tpope/vim-haml'
+    Bundle 'AndrewRadev/linediff.vim'
+    Bundle 'mattn/emmet-vim'
     " --------------------------------------------------------------------- "
 
     filetype plugin indent on     " required! for vundle
@@ -184,7 +188,6 @@
      " :echo &runtimepath.','.escape("~/backupfiles/syntax",'\,')
      " map <leader>1 :echo expand('%:p:h').""<cr>
      " let &runtimepath.=','.escape("~/backupfiles/syntax",'\,')
-
      "Make current line's number bold
          set cursorline
          " hi CursorLineNr   term=bold ctermfg=Yellow gui=bold guifg=Yellow
@@ -196,7 +199,7 @@
          augroup CLNRSet
              autocmd! ColorScheme * hi CursorLineNR cterm=bold
          augroup END
-
+    hi CursorLine   cterm=NONE ctermbg=gray ctermfg=black
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -221,7 +224,7 @@
      autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
      " setting the working directory to the current file's directory:
-     autocmd BufEnter * lcd %:p:h
+     " autocmd BufEnter * lcd %:p:h
 
      " returns true iff is NERDTree open/active
      function! IsNTOpen()
@@ -243,22 +246,40 @@
          endif
      endfunction
 
-     " autocmd BufWinEnter * call NCSyncTree()
+     autocmd BufWinEnter * call NCSyncTree()
 
+     function! ToggleSyncTree()
+         let ntOpen = nerdtree#isTreeOpen()
+         let ntFocused = IsNTFocused()
+         if &modifiable && !ntOpen && strlen(expand('%')) > 0 && !&diff
+             NERDTreeFind
+             wincmd p
+         endif
+         " if nt is open and not focused then toggle
+         if &modifiable && ntOpen && !ntFocused && strlen(expand('%')) > 0 && !&diff
+             NERDTreeToggle
+             wincmd p
+         endif
+     endfunction
 
      " :cnoreabbrev q CloseSession<bar>q
      " :cnoreabbrev wq CloseSession<bar>w<bar>q
+     " USED:
      " :cnoreabbrev <silent> q! CloseSession<bar>q!
      " :cnoreabbrev <silent> q CloseSession<bar>q
      " :cnoreabbrev <silent> Q CloseSession<bar>q
      " :cnoreabbrev <silent> wq CloseSession<bar>wa<bar>q
      " :cnoreabbrev <silent> WQ CloseSession<bar>wa<bar>q
-
+     
+     :cnoreabbrev <silent> Q q
+     :cnoreabbrev <silent> wq wa<bar>q
+     :cnoreabbrev <silent> WQ wa<bar>q
+     
      " exit with capitols
-     :command WQ wq
-     :command Wq wq
-     :command W w
-     :command Q q
+     " :command WQ wq
+     " :command Wq wq
+     " :command W w
+     " :command Q q
 
      function! CloseSess()
          CloseSession
@@ -338,8 +359,12 @@
  " EasyMotion
      " :help easymotion
      let g:EasyMotion_leader_key = "\\"
-     " let g:EasyMotion_leader_key = "'"
-
+     noremap '' H
+     " Activate Easymotion
+     nmap " \w
+     " nmap ; \B
+     vmap " \W
+     " vmap ; \B
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -449,6 +474,18 @@
          \}
      let g:todo_note_file = expand("%:t:r")."-note.txt"
      let g:todo_done_file = expand("%:t:r")."-done.txt"
+     " Todo prompt
+     nmap <leader>c \tp
+     " Todo finish
+     nmap <leader>f \tns
+     " Todo move done
+     nmap <leader>1 \tad
+     " Todo move notes
+     nmap <leader>2 \tmn
+     " Todo archive notes
+     nmap <leader>3 \tan
+     nmap <leader>3 :call MakeNoteFile()<cr>
+     " nmap <leader>1 <esc>ggi#<space>vim:ft=todo<cr>:SETTINGS:<cr><tab>+DONEFILE:<cr><esc>kA<esc>:put=expand('%:t:r')<cr>i<bs><esc>A-done.txt<cr>
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -460,7 +497,10 @@
      let g:session_default_name = expand("%:t:r")."-session"
      let g:session_default_overwrite = 0
      let g:session_extension = ".vim"
+     let g:session_autoload = "no"
 
+     " Open Session
+     noremap <C-o> <esc>:OpenSession<Space><C-d>
 
      " Make sure when you quit and you open a new vim the files are not kept
      " open
@@ -528,10 +568,10 @@ endif
 
      " Activate Easymotion
      " nmap ' \w
-     nmap ' \W
-     nmap " \B
-     vmap ' \W
-     vmap " \B
+     " nmap ' \W
+     " nmap " \B
+     " vmap ' \W
+     " vmap " \B
 
 
  " ------------------------------------------------------------------------- "
@@ -568,8 +608,12 @@ endif
  " ------------------------------------------------------------------------- "
  " MRU
      let MRU_Max_Entries = 1000
-     let MRU_File = '~/.vim/sessions/MRU'
-     let MRU_Auto_Close = 0
+     " silent !touch ~/.vim/sessions/MRU > /dev/null 2>&1
+     " let MRU_File = '~/.vim/sessions/MRU'
+     " MRU does not close after you open a file (want to make this
+     " functionality work with the vimgrep stuff)
+     " let MRU_Auto_Close = 0
+    map <c-i> <esc>:MRU<cr>
  " ------------------------------------------------------------------------- "
 
  " ------------------------------------------------------------------------- "
@@ -590,13 +634,14 @@ endif
      " :verbose map! <C-Q>
 
      "Change redo command
-     map <C-y> <C-R> "Ctrl + Y = redo
+     " map <C-y> <C-R> "Ctrl + Y = redo
 
      " Ctrl + n = Toggle NERDTree"
-     map <C-n> <ESC>:NERDTreeToggle<CR>
+     map <C-n> <ESC>:call<space>ToggleSyncTree()<CR>
+     " map <C-n> <ESC>:NERDTreeToggle<CR>
 
      " Ctrl + t = Toggle TagBar
-     map <C-t> <ESC>:TagbarToggle<CR>
+     " map <C-t> <ESC>:TagbarToggle<CR>
 
      " Press space twice to comment current/selected line(s)
      map <leader><Space> <plug>NERDCommenterToggle
@@ -605,13 +650,13 @@ endif
      map <leader>t :Tabularize /
 
      " Toggle on and off highlight during search
-     map <leader>h :set hlsearch!<CR>
+     " map <leader>h :set hlsearch!<CR>
 
      " Shortcut for delete a word
-     map <leader>d daw
+     " map <leader>d daw
 
      " Shortcut for delete a word but keep spaces on either side
-     map <leader>dd diwi<Space><Esc>
+     " map <leader>dd diwi<Space><Esc>
 
      " Fast source vimrc
      map <leader>s <Esc>:source $MYVIMRC<CR>
@@ -670,7 +715,7 @@ endif
        \gV:call setreg('"', old_reg, old_regtype)<CR>
 
      " Switch Current Working Directory to the directory of the open buffer
-     map <leader>cd :cd %:p:h<cr>:pwd<cr>
+     map <leader>cd :cd %:p:h<cr>:pwd<cr><esc>:call<space>NCSyncTree()<cr>
 
      " Move a line of text using shift+[j/k] on mac
      nmap <S-Down> mz:m+<cr>`z
@@ -689,13 +734,14 @@ endif
      " map <leader>oo :CtrlPMRU<cr>
 
      " Ctrlp version of browsing old files (M.ost R.ecently U.sed)
-     nmap ; :CtrlPMRU<cr>
+     " nmap ; :CtrlPMRU<cr>
 
      " Insert new line after current one
-     nmap <leader><cr> <esc>:pu_<cr>
+     " nmap <leader><cr> <esc>:pu_<cr>
     
      " put a new line at the end of the file
-     noremap <Leader>o o<Esc>
+     " noremap <Leader>o o<Esc>
+     " nmap <leader><cr> <esc>:pu_<cr>
 
      " ------------------------------------------------------------------------- "
      " Split Navigation
@@ -730,7 +776,9 @@ endif
      " ------------------------------------------------------------------------- "
      " Buffer Navigation
          " Switch to buffer from the list
-         map <leader>ls <esc>:ls<CR>:b<Space>
+         " map <leader>ls <esc>:ls<CR>:b<Space>
+         map <leader>ls <esc>:EasyBuffer<CR>
+
 
          " Q closes the current buffer
          map Q <esc>:bd<cr>
@@ -739,7 +787,7 @@ endif
          map Q! <esc>:bd!<cr>
 
          " Close buffer number(s) [use this notation with buffers :1,3bd]
-         map <leader>cb <esc>:ls<CR>:bd<left><left>
+         " map <leader>cb <esc>:ls<CR>:bd<left><left>
 
          " Open file in new buffer
          " REMAP
@@ -767,33 +815,33 @@ endif
              " map <leader>to :tabonly<cr>
 
      " Opens a new tab with the current buffer's path
-     map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+     " map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
      " Open a new tab from specific buffer in the list
-     map <leader>ts <esc>:ls<cr>:tabnew<Bar>b
+     " map <leader>ts <esc>:ls<cr>:tabnew<Bar>b
 
      " Create a new tab, enter filename
-     map <leader>nt <esc>:ls<cr>:tabnew<Space>
+     " map <leader>nt <esc>:ls<cr>:tabnew<Space>
 
      nmap # :call SwitchToLastBuffer()<CR>
 
      " Open a new tab with next file in the buffer loaded
-     nmap <leader><tab> <Esc>:tab sbnext<CR>
+     " nmap <leader><tab> <Esc>:tab sbnext<CR>
 
      " Open a new tab with no filename
-     nmap <C-t> <Esc>:tabnew<CR>
+     " nmap <C-t> <Esc>:tabnew<CR>
 
      "Close the current tab
-     nmap <leader>q <esc>:tabclose<cr>
+     " nmap <leader>q <esc>:tabclose<cr>
 
      " Move to a tab number ( 0 indexed, despite :tabs output )
-     nmap <leader>m <esc>:tabs<cr>:tabm<space>
+     " nmap <leader>m <esc>:tabs<cr>:tabm<space>
 
      " Focus on the next tab
-     noremap <Tab> <esc>:tabn<cr>
+     " noremap <Tab> <esc>:tabn<cr>
 
      " Focus on the previous tab
-     noremap <S-Tab> <esc>:tabp<cr>
+     " noremap <S-Tab> <esc>:tabp<cr>
 
      " Clear all trailing spaces
      nmap \\ <esc>:%s/\s\+$//e<CR>
@@ -802,7 +850,7 @@ endif
      nmap <leader>cl <esc><Bslash><Bslash>:%s/\n/, /g<cr>$i<BS><esc><Bslash><Bslash>
 
      " joining lines
-     noremap ,j :join<cr>
+     " noremap ,j :join<cr>
 
  " ------------------------------------------------------------------------- "
 
