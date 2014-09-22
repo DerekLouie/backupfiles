@@ -120,7 +120,7 @@
     set wildmode=longest:full,full                          " On tab wildmenu shows up
     set t_Co=256                                            " Set color limit to 256
     color jellybeans
-    set ignorecase
+    " set ignorecase
     set wrap                                                " Setting wrapping: http://vim.wikia.com/wiki/Word_wrap_without_line_breaks
     set linebreak
     set viminfo^=%                                          " Remember info about open buffers on close
@@ -623,7 +623,7 @@ endif
      set wildignore=*.o,*~,*.pyc
 
      " Ignore case when searching
-     set ignorecase
+     " set ignorecase
 
      " When searching try to be smart about cases
      " set smartcase
@@ -693,6 +693,9 @@ endif
 
      " Insert new line after current one
      nmap <leader><cr> <esc>:pu_<cr>
+    
+     " put a new line at the end of the file
+     noremap <Leader>o o<Esc>
 
      " ------------------------------------------------------------------------- "
      " Split Navigation
