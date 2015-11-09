@@ -48,7 +48,11 @@ function serve {
   ruby -r webrick -e "s = WEBrick::HTTPServer.new(:Port => $port, :DocumentRoot => Dir.pwd); trap('INT') { s.shutdown }; s.start"
 }
 
+grepFunction () {
+  grep -r -i --include \*.rtf "$@" .
+}
 
+alias gthis=grepFunction
 
 # From Mike:
 alias gsc='grep -r "<<<<" *' # See merge conflicts
