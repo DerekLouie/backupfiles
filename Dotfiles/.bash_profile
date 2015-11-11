@@ -73,6 +73,10 @@ alias gau='git add -u .'
 alias gap='git add -p'
 alias ge='vim .git/config'
 alias gsm='git submodule update --init --recursive'
+
+# Prompt before overwritting
+alias cp='cp -i'
+
 function gbd() {
     git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative master.."$*"
 }
